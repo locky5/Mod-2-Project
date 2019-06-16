@@ -1,0 +1,14 @@
+Login Form
+
+<%= form_tag(login_path) do %>
+ <%= label :session, :username %>
+ <%= text_field :session, :username %>
+ <%= label :session, :password %>
+ <%= password_field :session, :password %>
+ <%= submit_tag("Sign in", class: "btn btn-large btn-primary") %>
+<% end %>
+
+<% if flash[:message] %>
+<br>
+<%= flash[:message] %>
+<% end %>
