@@ -1,4 +1,5 @@
 require 'rest-client'
+require 'JSON'
 
 class UsersController < ApplicationController
 
@@ -8,8 +9,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(session[:user_id])
-    @client_id = "ustnqopkuzuzccqb0e4q0svq1185rr"
-    @data = RestClient.get "https://api.twitch.tv/helix/streams?first=100",  { 'Client-ID': "#{@client_id}"}
   end
 
   def new
@@ -31,7 +30,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :language)
   end
 
 end
