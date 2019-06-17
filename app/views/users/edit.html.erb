@@ -4,8 +4,14 @@
 <%= form_for @user do |f| %>
   <%= f.label :username %>
   <%= f.text_field :username %>
+  <br>
   <%= f.label :password %>
   <%= f.password_field :password %>
-  <%= f.collection_select(:language_id, @languages, :id, :abbreviation, prompt: true)%>
-  <%= f.submit "Edit." %>
+  <br>
+  <%= f.label :language_id%>
+  <%= f.collection_select(:language_id, @languages, :id, :name, prompt: true)%>
+  <br>
+  <%= f.submit "Update" %>
 <% end %>
+<br>
+<%= button_to "Delete My Account", profile_path(@user), :method=> "delete" %>

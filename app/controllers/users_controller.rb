@@ -42,9 +42,10 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(session[:user_id])
+    @user.subscriptions.delete_all
     @user.delete
     session[:user_id] = nil
-    redirect_to "/users"
+    redirect_to "/"
   end
 
   private

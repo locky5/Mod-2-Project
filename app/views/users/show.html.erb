@@ -1,8 +1,8 @@
-<h1><%= @user.username %>'s Page</h1>
+<h1>Hello, <%= @user.username %></h1>
 <h2>Language: <%= @user.language.name %></h2>
-<!--ignoring language display for now-->
 
-<h1>My Subscribed Streams:</h1>
+
+<h1>My Subscribed Streams</h1>
 <ul>
 
     <% @user.channels.each do |channel| %>
@@ -15,7 +15,7 @@
 <br>
 <br>
 
-<h2> Recommend Streams For Your Language: </h2>
+<h1> Recommended Streams For Your Language </h1>
 
 <ul>
 <%@user.recommendChannel.each do |channel|%>
@@ -27,8 +27,5 @@
 <br>
 
 <% if @user.id == session[:user_id] %>
-<%= button_to "Edit", edit_path(@user), method: :get%>
-<%= button_to "Return To All Users", "/users", method: :get %>
-<%= button_to "Delete User", profile_path(@user), :method=> "delete" %>
-<%= button_to "Logout", "/logout", :method=> "delete" %>
+<%= link_to "Settings", edit_path(@user), method: :get%>
 <% end %>
