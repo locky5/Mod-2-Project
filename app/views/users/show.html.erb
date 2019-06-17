@@ -4,18 +4,18 @@
 
 <h1>My Subscribed Streams:</h1>
 <ul>
-    
+
     <% @user.channels.each do |channel| %>
         <li>
             <%= link_to channel.name, channel_path(channel) %>
         </li>
     <% end %>
-    
+
 </ul>
 <br>
 <br>
 
-<h2> Recommend streams: </h2>
+<h2> Recommend Streams For Your Language: </h2>
 
 <ul>
 <%@user.recommendChannel.each do |channel|%>

@@ -20,4 +20,7 @@ class Channel < ApplicationRecord
     end
   end
 
+  def self.alive
+    Channel.select{|channel| channel.status == "live"}
+  end
 end
