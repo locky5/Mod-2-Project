@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_17_150114) do
+ActiveRecord::Schema.define(version: 2019_06_17_155914) do
 
   create_table "channels", force: :cascade do |t|
     t.string "name"
     t.string "title"
-    t.string "language"
     t.integer "view_count"
     t.integer "game_id"
+    t.integer "language_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_channels_on_game_id"
+    t.index ["language_id"], name: "index_channels_on_language_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -28,13 +29,14 @@ ActiveRecord::Schema.define(version: 2019_06_17_150114) do
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "twitch_game_id"
+    t.string "twitch_game_id"
   end
 
   create_table "languages", force: :cascade do |t|
     t.string "abbreviation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   create_table "subscriptions", force: :cascade do |t|

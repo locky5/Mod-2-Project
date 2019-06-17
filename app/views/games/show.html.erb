@@ -1,5 +1,7 @@
 <h1><%= @game.name %>'s Page</h1>
 
-<% @channels.select {|channel| channel["game_id"] == @game.twitch_game_id} %>
+<%= @game.twitch_game_id %>
+
+<% @this_games_channels.each do |channel| %>
 <%= channel.name %>
 <% end %>

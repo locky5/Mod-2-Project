@@ -1,5 +1,6 @@
 class Channel < ApplicationRecord
   belongs_to :game
+  validates :name, uniqueness: true
 
   def self.search(search)
     if search
