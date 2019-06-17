@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :channels
   resources :games
   resources :languages
+  root 'static_pages#home'
 
   resources :users, only: [:index, :create, :edit, :update]
   get '/profile/:id', to: "users#show", as: "profile"
