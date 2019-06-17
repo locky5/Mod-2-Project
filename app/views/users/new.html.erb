@@ -1,15 +1,21 @@
-User New Form
-
-<%= form_for @user do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.collection_select(:language_id, @languages, :id, :abbreviation, prompt: true)%>
-  <%= f.submit "Sign Up" %>
-<% end %>
+<h1>Sign Up</h1>
 
 <% if flash[:message] %>
 <br>
 <%= flash[:message] %>
 <% end %>
+
+<%= form_for @user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <br>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <br>
+  <%= f.label :language_id %>
+  <%= f.collection_select(:language_id, @languages, :id, :abbreviation, prompt: true)%>
+  <br>
+  <%= f.submit "Sign Up" %>
+<% end %>
+
+

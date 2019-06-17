@@ -1,14 +1,18 @@
-Login Form
+<h1>Login</h1>
+
+<% if flash[:message] %>
+<br>
+<h2><%= flash[:message] %></h2>
+<% end %>
+
 
 <%= form_tag(login_path) do %>
  <%= label :session, :username %>
  <%= text_field :session, :username %>
+ <br>
  <%= label :session, :password %>
  <%= password_field :session, :password %>
+ <br>
  <%= submit_tag("Sign in", class: "btn btn-large btn-primary") %>
 <% end %>
 
-<% if flash[:message] %>
-<br>
-<%= flash[:message] %>
-<% end %>
