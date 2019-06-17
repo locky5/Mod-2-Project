@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to profile_path(@user)
     else
-      flash[:message] = @user.errors.full_messages[0]
+      flash[:message] = "Username or Password is incorrect"
       redirect_to "/login"
     end
   end

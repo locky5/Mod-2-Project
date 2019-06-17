@@ -1,2 +1,20 @@
-<h1>Channels#show</h1>
-<p>Find me in app/views/channels/show.html.erb</p>
+<h1><%= @channel.name %>'s Page</h1>
+
+<h2>Viewer Count: <%= @channel.view_count %></h2>
+
+<body>
+    <!-- Add a placeholder for the Twitch embed -->
+    <div id="twitch-embed"></div>
+
+    <!-- Load the Twitch embed script -->
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
+
+    <!-- Create a Twitch.Embed object that will render within the "twitch-embed" root element. -->
+    <script type="text/javascript">
+      new Twitch.Embed("twitch-embed", {
+        width: 854,
+        height: 480,
+        channel: "<%= @channel.name %>"
+      });
+    </script>
+</body>
