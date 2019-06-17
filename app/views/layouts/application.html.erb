@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HELLO</title>
+    <title>Welcome</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all',
                                               'data-turbolinks-track': 'reload' %>
@@ -20,8 +20,12 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home",   '/' %></li>
+            <%if logged_in?%>
+            <%= button_to "Logout", "/logout", :method=> "delete" %>
+            <%else%>
             <li><%= link_to "Sign up",   '/signup' %></li>
             <li><%= link_to "Log in", '/login' %></li>
+            <%end%>
           </ul>
         </nav>
       </div>
