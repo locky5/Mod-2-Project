@@ -17,6 +17,19 @@
         channel: "<%= @channel.name %>"
       });
     </script>
-</h2>
 
-<%= button_to "Subscribe!", :method => "post" %>
+
+      
+  <% if @user_id %>
+    <%= form_for(@subscription) do |f| %>
+    <%=f.hidden_field :user_id, :value => @user_id %>
+    <%=f.hidden_field :channel_id, :value => @channel.id %>
+    <%=f.submit "Click here to subscribe!"%>
+    <% end %>
+  <% else %>
+    Please login to Subscribe!
+  <% end %>
+    
+</body>
+
+  

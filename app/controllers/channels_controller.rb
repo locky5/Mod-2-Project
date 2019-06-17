@@ -23,6 +23,8 @@ class ChannelsController < ApplicationController
   end
 
   def show
+    @user_id = session[:user_id]
+    @subscription = Subscription.new
     @channel = Channel.find(params[:id])
     @client_id = "ustnqopkuzuzccqb0e4q0svq1185rr"
     @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?first=100",  { 'Client-ID': "#{@client_id}"}

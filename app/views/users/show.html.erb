@@ -3,7 +3,15 @@
 <!--ignoring language display for now-->
 
 <h1>Your streams:</h1>
-
+<ul>
+    
+    <% @user.channels.each do |channel| %>
+        <li>
+            <%= link_to channel.name, channel_path(channel) %>
+        </li>
+    <% end %>
+    
+</ul>
 <br>
 <br>
 

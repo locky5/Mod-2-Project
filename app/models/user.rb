@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_secure_password # does encryption and authentication
+
+  has_many :subscriptions
   has_many :channels, through: :subscriptions
   belongs_to :language
   validates :username, presence: true
