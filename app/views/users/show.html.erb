@@ -7,6 +7,17 @@
 <br>
 <br>
 
+<h2> Recommend streams: </h2>
+
+<ul>
+<%@user.recommendChannel.each do |channel|%>
+   <li><%=link_to channel.name, channel_path(channel)%></li>
+   <%end%>
+</ul>
+
+<br>
+<br>
+
 <% if @user.id == session[:user_id] %>
 <%= button_to "Edit", edit_path(@user), method: :get%>
 <%= button_to "Return To All Users", "/users", method: :get %>

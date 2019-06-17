@@ -6,4 +6,12 @@ class User < ApplicationRecord
   validates :password, presence: true
   validates :username, uniqueness: true
   validates :language, presence: true
+
+
+  def recommendChannel
+    Channel.all.select do |channel|
+      channel.language_id == self.language_id
+    end[0..6]
+  end
+
 end
