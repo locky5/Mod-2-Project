@@ -9,7 +9,7 @@
 <ul>
 <%@data["data"].each do |instance|%>
 <li>
-  <%= instance["user_name"] %>
+  <%= link_to instance["user_name"], "https://www.twitch.tv/#{instance["user_name"]}" %>
 </li>
 <% end %>
 </ul>

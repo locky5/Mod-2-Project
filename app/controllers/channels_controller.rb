@@ -10,11 +10,7 @@ class ChannelsController < ApplicationController
   end
 
   def show
+    @channel = Channel.find(params[:id])
   end
 
-  def new
-  end
-
-  def edit
-  end
 end

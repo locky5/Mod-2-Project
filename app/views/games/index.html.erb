@@ -9,7 +9,7 @@
 <ul>
 <%@data["top"].each do |game|%>
 <li>
-<%=game["game"]["name"]%>
+<%= link_to "#{game["game"]["name"]}: #{game["game"]["popularity"]}", "https://twitch.tv/directory/game/#{game["game"]["name"]}"%>
 </li>
 <% end %>
 </ul>
