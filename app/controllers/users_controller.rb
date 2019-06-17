@@ -16,6 +16,18 @@ class UsersController < ApplicationController
     @languages = Language.all
   end
 
+  def edit
+    @user = User.find(params[:id])
+    @languages = Language.all
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    session[:user_id] = @user.id
+    redirect_to "/users"
+  end
+
   def create
     @user = User.new(user_params)
     if @user.valid?

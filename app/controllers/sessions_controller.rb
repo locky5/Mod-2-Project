@@ -9,14 +9,15 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to profile_path(@user)
     else
-      flash[:message] = "Username or Password is incorrect"
-      redirect_to "/login"
+      flash[:message] = "Incorrect login credentials.  Please try again."
+      redirect_to login_path
     end
   end
 
   def destroy
     session[:user_id] = nil
     redirect_to "/login"
+    #should we not redirect to main page?
   end
 
 end

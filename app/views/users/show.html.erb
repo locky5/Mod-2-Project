@@ -1,12 +1,13 @@
 <h1><%= @user.username %>'s Page</h1>
 <h2>Encrypted Password: <%= @user.password_digest %></h2>
-<h2>Language: <%= @user.language.abbreviation %></h2>
+<!--ignoring language display for now-->
 
 <h1>Your streams:</h1>
 
 <br>
 <br>
 
+<%= link_to "Edit", edit_path(@user)%>
 <%= link_to "Return To All Users", "/users" %>
 <%= button_to "Delete User", profile_path(@user), :method=> "delete" %>
 <%= button_to "Logout", "/logout", :method=> "delete" %>
