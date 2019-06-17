@@ -20,4 +20,10 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  def destroy
+    @subscription = Subscription.find(params[:id])
+    @subscription.delete
+    redirect_to channel_path(@subscription.channel_id)
+  end
+
 end
