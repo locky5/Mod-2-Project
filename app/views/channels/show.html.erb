@@ -24,7 +24,7 @@
     
     <% if @subscribed %>
       <%= button_to "Unsubscribe", {:controller => :subscriptions,
-      :action => 'destroy', :id => @subscribed.id }, :method => :delete %>
+      :action => 'destroy', :id => @subscribed.id}, :method => :delete %>
     <% else %>
       <%= form_for(@subscription) do |f| %>
       <%=f.hidden_field :user_id, :value => @user_id %>
