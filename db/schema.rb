@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_14_171241) do
+ActiveRecord::Schema.define(version: 2019_06_17_021138) do
 
   create_table "channels", force: :cascade do |t|
     t.string "name"
@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(version: 2019_06_14_171241) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "languages", force: :cascade do |t|
+    t.string "abbreviation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.integer "user_id"
     t.integer "channel_id"
@@ -42,9 +48,10 @@ ActiveRecord::Schema.define(version: 2019_06_14_171241) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
-    t.string "language"
+    t.integer "language_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["language_id"], name: "index_users_on_language_id"
   end
 
 end

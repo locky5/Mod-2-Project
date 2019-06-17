@@ -8,11 +8,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(session[:user_id])
+    @user = User.find(params[:id])
   end
 
   def new
     @user = User.new
+    @languages = Language.all
   end
 
   def create
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :language)
+    params.require(:user).permit(:username, :password, :language_id)
   end
 
 end
