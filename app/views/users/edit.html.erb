@@ -1,2 +1,11 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1><%=@user.username%>'s Edit Page</h1>
+
+
+<%= form_for @user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.collection_select(:language_id, @languages, :id, :abbreviation, prompt: true)%>
+  <%= f.submit "Edit." %>
+<% end %>
