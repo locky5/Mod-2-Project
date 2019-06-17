@@ -9,7 +9,7 @@ class ChannelsController < ApplicationController
     @data["data"].each do |channel|
       Channel.create(name: channel["user_name"], title: channel["title"], language: channel["language"], view_count: channel["viewer_count"], game_id: 1)
     end
-    @channels = Channel.all
+    @channels = Channel.search(params[:search])
   end
 
   def show
