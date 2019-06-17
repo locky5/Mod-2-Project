@@ -18,5 +18,6 @@ Language.create(abbreviation: 'zh', name: 'Chinese')
 Language.create(abbreviation: 'tr', name: 'Turkish')
 Language.create(abbreviation: 'ja', name: 'Japanese')
 Language.create(abbreviation: 'pl', name: 'Polish')
+Language.create(abbreviation: 'it', name: 'Italian')
 
 Game.create(name: "none", category: "none", twitch_game_id: "0")

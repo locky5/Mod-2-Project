@@ -1,12 +1,15 @@
 class Channel < ApplicationRecord
   belongs_to :game
+  has_many :users, through: :subscriptions
   validates :name, uniqueness: true
 
   def self.search(search)
     if search
-      channel = Channel.find_by(name: search)
+      channel = Channel.select{ |channel| channel.name.include?(search.capitalize) }
       if channel
-        self.where(channel_id: channel)
+        channel.each do |channel|
+          channel.name
+        end
       else
         Channel.all
       end
@@ -14,4 +17,5 @@ class Channel < ApplicationRecord
       Channel.all
     end
   end
+
 end

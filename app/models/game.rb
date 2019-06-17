@@ -1,13 +1,14 @@
 class Game < ApplicationRecord
-  has_many :users, through: :subscriptions
   has_many :channels
   validates :twitch_game_id, uniqueness: true
 
   def self.search(search)
     if search
-      game = Game.find_by(name: search)
+      game = Game.select{ |game| game.name.include?(search.capitalize) }
       if game
-        self.where(game_id: game)
+        game.each do |game|
+          game.name
+        end
       else
         Game.all
       end
@@ -15,4 +16,5 @@ class Game < ApplicationRecord
       Game.all
     end
   end
+
 end

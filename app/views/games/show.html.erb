@@ -1,7 +1,9 @@
 <h1><%= @game.name %>'s Page</h1>
 
-<%= @game.twitch_game_id %>
-
+<ul>
 <% @this_games_channels.each do |channel| %>
-<%= channel.name %>
+<li>
+<%= link_to channel.name, channel_path(channel) %>
+</li>
 <% end %>
+</ul>

@@ -14,9 +14,9 @@ class ChannelsController < ApplicationController
 
       if @new_channel.valid?
         @new_channel.save
-      else
-        @found_channel = Channel.find_by(name: twitch_channel["user_name"])
-        @found_channel.update(name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game_id)
+      # else
+      #   @found_channel = Channel.find_by(name: twitch_channel["user_name"])
+      #   @found_channel.update(name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game_id)
       end
 
     end

@@ -2,7 +2,7 @@
 
 <h2>Viewer Count: <%= @channel.view_count %></h2>
 
-<body>
+<h2>
     <!-- Add a placeholder for the Twitch embed -->
     <div id="twitch-embed"></div>
 
@@ -17,6 +17,6 @@
         channel: "<%= @channel.name %>"
       });
     </script>
-</body>
+</h2>
 
 <%= button_to "Subscribe!", :method => "post" %>
