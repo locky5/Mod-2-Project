@@ -11,10 +11,10 @@ class Channel < ApplicationRecord
           channel.name
         end
       else
-        Channel.all
+        Channel.select{|channel| channel.status = "live"}
       end
     else
-      Channel.all
+      Channel.select{|channel| channel.status = "live"}
     end
   end
 
