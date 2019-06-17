@@ -7,7 +7,8 @@
 <br>
 <br>
 
-<%= link_to "Edit", edit_path(@user)%>
-<%= link_to "Return To All Users", "/users" %>
+<%= button_to "Edit", edit_path(@user), method: :get%>
+<br>
+<%= button_to "Return To All Users", "/users", method: :get %>
 <%= button_to "Delete User", profile_path(@user), :method=> "delete" %>
 <%= button_to "Logout", "/logout", :method=> "delete" %>
