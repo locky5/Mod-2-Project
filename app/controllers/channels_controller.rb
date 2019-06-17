@@ -10,8 +10,7 @@ class ChannelsController < ApplicationController
       @game = Game.find{|game| game.twitch_game_id.to_s == twitch_channel["game_id"]}
       @game_id = @game ? @game.id : Game.find{|game| game.twitch_game_id = '0'}.id
       @language = Language.find{|language| language.abbreviation == twitch_channel["language"]}
-      @new_channel = Channel.new(name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game_id)
-
+      @new_channel = Channel.new(name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game_id, status: twitch_channel["type"])
       if @new_channel.valid?
         @new_channel.save
       # else
