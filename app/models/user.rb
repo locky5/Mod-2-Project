@@ -12,15 +12,15 @@ class User < ApplicationRecord
   def recommendChannel
     Channel.alive.select do |channel|
       channel.language_id == self.language_id
-    end[0..6]
+    end[0..7]
   end
 
-  def self.search(search)
-    if search
-      User.select{ |user| user.name.downcase.include?(search.downcase) }
-    else
-      User.all
-    end
+  def recommendChannelSubscription
+    Channel.alive.select do |channel|
+      self.subscriptions.each do |subscription|
+        channel.game_id == subscription.channel.game_id
+      end
+    end[0..7]
   end
 
 end
