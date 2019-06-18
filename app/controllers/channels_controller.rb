@@ -11,7 +11,7 @@ class ChannelsController < ApplicationController
     #look for game id
     misc_game_id = Game.find_by(twitch_game_id: '0').id
     @data["data"].each do |twitch_channel|
-      if twitch_channel["game_id"]
+      if twitch_channel["game_id"].empty?
         @game = Game.find{|game| game.twitch_game_id == twitch_channel["game_id"]}
         #creates a game if not found
         if !@game
