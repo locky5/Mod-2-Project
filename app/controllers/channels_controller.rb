@@ -31,11 +31,9 @@ class ChannelsController < ApplicationController
         @new_channel.save
       end
     end
-    @channels = Channel.search(params[:search])
-    @channels = if params[:sort_by] == "name"
-      Channel.order(:name)
-    else
-      Channel.all
+    @channels_search = Channel.search(params[:search])
+    if params[:sort_by] == "name"
+      @channels_search = @channels_search.sort_by{|channel| channel.name}
     end
   end
 
