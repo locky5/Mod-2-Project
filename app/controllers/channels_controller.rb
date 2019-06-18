@@ -5,13 +5,12 @@ class ChannelsController < ApplicationController
   def index
     @client_id = "ustnqopkuzuzccqb0e4q0svq1185rr"
     @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?first=100",  { 'Client-ID': "#{@client_id}"}
-    @dummy_data_games = RestClient.get "https://api.twitch.tv/kraken/games/top?limit=100",  { 'Client-ID': "#{@client_id}"}
-    @data = JSON.parse(@dummy_data)
-    @game_data = JSON.parse(@dummy_data_games)
 
+    @data = JSON.parse(@dummy_data)
     @data["data"].each do |twitch_channel|
       if twitch_channel["game_id"]
         @game = Game.find{|game| game.twitch_game_id == twitch_channel["game_id"]}
+        #creates a game if not found
         if @game
           @game_id = @game.id
         else
@@ -19,7 +18,8 @@ class ChannelsController < ApplicationController
           Game.create(name: @specific_game["data"]["name"], category: @specific_game["data"]["name"], twitch_game_id: @specific_game["data"]["id"], box_art: @specific_game["data"]["box_art_url"])
         end
       else
-          @game_id = "0"
+        #set twitch_game_id to
+        @game_id = Game.find(twitch_game_id: '0')
       end
       @language = Language.find{|language| language.abbreviation == twitch_channel["language"]}
       @language = Language.find_by(name: "NA") if !@language
