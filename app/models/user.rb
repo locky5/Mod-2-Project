@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
 
   def recommendChannel
-    Channel.alive do |channel|
+    Channel.alive.select do |channel|
       channel.language_id == self.language_id
     end[0..6]
   end
