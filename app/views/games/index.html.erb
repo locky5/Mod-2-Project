@@ -4,12 +4,14 @@
 <%= form_tag(games_path, method: :get) do%>
   <%= text_field_tag(:search, params[:search]) %>
   <%= submit_tag ("Search") %>
-<% end %> 
-
-<ul>
-<%@games.each do |game|%>
-<li>
-<%=link_to game.name, game_path(game)%>
-</li>
 <% end %>
-</ul>
+
+<div class="container2">
+        <ul>
+          <%@games.each do |game|%>
+          <li>
+          <div class="bottom"><%=link_to game.name, game_path(game)%></div>
+          </li>
+          <% end %>
+        </ul>
+</div>

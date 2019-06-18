@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_17_184759) do
+ActiveRecord::Schema.define(version: 2019_06_18_023415) do
 
   create_table "channels", force: :cascade do |t|
     t.string "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2019_06_17_184759) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
+    t.string "box_art"
     t.index ["game_id"], name: "index_channels_on_game_id"
     t.index ["language_id"], name: "index_channels_on_language_id"
   end
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_06_17_184759) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "twitch_game_id"
+    t.string "box_art"
   end
 
   create_table "languages", force: :cascade do |t|

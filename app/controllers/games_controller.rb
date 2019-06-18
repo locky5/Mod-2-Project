@@ -8,7 +8,7 @@ class GamesController < ApplicationController
     @data = JSON.parse(@dummy_data)
     @data["top"].each do |game|
       #create or update check for twitch_game_id uniqueness
-      @new_game = Game.new(name: game["game"]["name"], category: game["game"]["popularity"], twitch_game_id: game["game"]["_id"])
+      @new_game = Game.new(name: game["game"]["name"], category: game["game"]["popularity"], twitch_game_id: game["game"]["_id"], box_art: game["game"]["box"]["large"])
       if @new_game.valid?
         @new_game.save
       # else

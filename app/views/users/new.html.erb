@@ -13,9 +13,7 @@
   <%= f.password_field :password %>
   <br>
   <%= f.label :language_id %>
-  <%= f.collection_select(:language_id, @languages, :id, :abbreviation, prompt: true)%>
+  <%= f.collection_select(:language_id, @languages, :id, :name, prompt: true)%>
   <br>
   <%= f.submit "Sign Up" %>
 <% end %>
-
-

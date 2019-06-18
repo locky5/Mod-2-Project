@@ -1,3 +1,50 @@
 // Place all the styles related to the Channels controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container3 {
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+    background: white;
+    margin-top: 20px;
+}
+
+.container3 ul{
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.container3 ul li{
+    float:left;
+    list-style: none;
+    width:20%;
+    height:300px;
+    background: white;
+    margin :20px 0px 20px 20px;
+    border:2px solid black;
+    box-sizing: border-box;
+}
+.container3 ul li:hover{
+    opacity: 0.8;
+}
+
+.container3 ul li .bottom{
+    width: 100%;
+    height:50px;
+    line-height: 30px;
+    background: yellow;
+    text-align: center;
+    color:white;
+    font-size: 15px;
+
+}
+
+@media screen and (max-width:1250px){
+    .container3 ul li{
+        width:40%;
+        margin-left: 40px;
+
+    }
+}
