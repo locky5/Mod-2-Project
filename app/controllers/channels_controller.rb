@@ -3,6 +3,7 @@ require 'JSON'
 
 class ChannelsController < ApplicationController
   def index
+    curr_live_channels = []
     @client_id = "ustnqopkuzuzccqb0e4q0svq1185rr"
     @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?first=100",  { 'Client-ID': "#{@client_id}"}
 
@@ -44,8 +45,9 @@ class ChannelsController < ApplicationController
       else
         @channel.update(title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game.id, status: twitch_channel["type"], box_art: @final_box_art)
       end
+      curr_live_channels << @channel
     end
-    @channels_search = Channel.search(params[:search])
+    @channels_search = Channel.search(curr_live_channels, params[:search])
     if params[:sort_by] == "name"
       @channels_search = @channels_search.sort_by{|channel| channel.name}
     end

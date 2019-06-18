@@ -8,11 +8,11 @@ class Channel < ApplicationRecord
     Channel.select{|channel| channel.status == "live"}
   end
 
-  def self.search(search)
+  def self.search(array, search)
     if search
-      channel = Channel.select{ |channel| channel.name.downcase.include?(search.downcase) }
+      channel = array.select{ |channel| channel.name.downcase.include?(search.downcase) }
     else
-      Channel.alive
+      array
     end
   end
 end

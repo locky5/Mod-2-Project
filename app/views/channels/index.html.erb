@@ -1,6 +1,6 @@
 <h1>Top Channels</h1>
 
-<h3>Search by Name:</h3>
+<h4>Search by Name:</h4>
 <%= form_tag(channels_path, method: :get) do%>
   <%= text_field_tag(:search, params[:search]) %>
   <%= submit_tag ("Search") %>
