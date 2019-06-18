@@ -11,12 +11,14 @@ class GamesController < ApplicationController
       @new_game = Game.new(name: game["game"]["name"], category: game["game"]["popularity"], twitch_game_id: game["game"]["_id"], box_art: game["game"]["box"]["large"])
       if @new_game.valid?
         @new_game.save
-      # else
-      #   @found_game = Game.find_by(twitch_game_id: game["game"]["_id"])
-      #   @found_game.update(name: game["game"]["name"], category: game["game"]["popularity"], twitch_game_id: game["game"]["_id"])
       end
     end
     @games = Game.search(params[:search])
+    @games = if params[:sort_by] == "name"
+      Game.order(:name)
+    else
+      Game.all
+    end
   end
 
   def show

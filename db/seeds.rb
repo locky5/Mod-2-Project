@@ -24,7 +24,7 @@ Language.create(abbreviation: 'ar', name: 'Arabic')
 Language.create(abbreviation: 'eu', name: 'Basque')
 Language.create(abbreviation: 'eu', name: 'Basque')
 
-Game.create(name: "Miscellaneous", category: "Miscaellaneous", twitch_game_id: "0")
+Game.create(name: "Miscellaneous", category: "Miscaellaneous", twitch_game_id: "0", box_art: "https://static-cdn.jtvnw.net/ttv-boxart/Littlewood-272x380.jpg")
 
 
 Language.create(name: 'Bengali	', abbreviation: 'bn')
