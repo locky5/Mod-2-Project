@@ -4,7 +4,7 @@
 <ul>
 <% @this_games_channels.each do |channel| %>
 <li>
-<div class="bottom"><%= link_to channel.name, channel_path(channel) %><img class="channel-box-art" src="<%=channel.box_art%>"alt="Smiley face"></div>
+<div class="bottom"><%= link_to channel.name, channel_path(channel) %><a href=<%=channel_path(channel)%>><img class="channel-box-art" src="<%=channel.box_art%>"alt="Smiley face"></a></div>
 </li>
 <% end %>
 </ul>
