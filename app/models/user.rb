@@ -15,11 +15,11 @@ class User < ApplicationRecord
     end[0..6]
   end
 
-  def self.search(search)
-    if search
-      User.select{ |user| user.name.downcase.include?(search.downcase) }
-    else
-      User.all
+  def recommendChannelSubscription
+    Channel.alive.select do |channel|
+      self.subscriptions.each do |subscription|
+        channel.game_id == subscription.channel.game_id
+      end
     end
   end
 
