@@ -5,7 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
 Language.create(abbreviation: 'en', name: 'English')
 Language.create(abbreviation: 'fr', name: 'French')
 Language.create(abbreviation: 'es', name: 'Spanish')
@@ -25,7 +24,7 @@ Language.create(abbreviation: 'ar', name: 'Arabic')
 Language.create(abbreviation: 'eu', name: 'Basque')
 Language.create(abbreviation: 'eu', name: 'Basque')
 
-Game.create(name: "none", category: "none", twitch_game_id: "0")
+Game.create(name: "Miscellaneous", category: "Miscaellaneous", twitch_game_id: "0")
 
 
 Language.create(name: 'Bengali	', abbreviation: 'bn')
@@ -68,3 +67,4 @@ Language.create(name: 'Urdu	', abbreviation: 'ur')
 Language.create(name: 'Ukrainian	', abbreviation: 'uk')
 Language.create(name: 'Vietnamese	', abbreviation: 'vi')
 Language.create(name: 'Welsh	', abbreviation: 'cy')
+Language.create(name: 'NA', abbreviation: 'none')

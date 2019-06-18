@@ -6,10 +6,17 @@ class ChannelsController < ApplicationController
     @client_id = "ustnqopkuzuzccqb0e4q0svq1185rr"
     @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?first=100",  { 'Client-ID': "#{@client_id}"}
     @data = JSON.parse(@dummy_data)
+  
     @data["data"].each do |twitch_channel|
-      @game = Game.find{|game| game.twitch_game_id.to_s == twitch_channel["game_id"]}
-      @game_id = @game ? @game.id : Game.find{|game| game.twitch_game_id = '0'}.id
+      if twitch_channel["game_id"]
+        @game = Game.find{|game| game.twitch_game_id == twitch_channel["game_id"]}
+        @game_id = @game.id
+      else
+        @game_id = "0"
+      end
       @language = Language.find{|language| language.abbreviation == twitch_channel["language"]}
+      @language = Language.find_by(name: "NA") if !@language
+
       @new_channel = Channel.new(name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game_id, status: twitch_channel["type"], box_art: twitch_channel["thumbnail_url"])
       if @new_channel.valid?
         @new_channel.save
