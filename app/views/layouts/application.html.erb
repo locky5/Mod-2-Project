@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome</title>
+    <title>Welcome to Our.Twitch</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all',
                                               'data-turbolinks-track': 'reload' %>
@@ -15,27 +15,6 @@
   </head>
   <body>
    <%= render 'layouts/header' %>
-    <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
-        <%= link_to "Our.Twitch", '/', id: "logo" %>
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home",   '/' %></li>
-            <%if logged_in?%>
-            <li>
-            <%= link_to "Profile", profile_path(session[:user_id]) %>
-            </li>
-            <li>
-            <%= link_to "Logout", "/logout", :method=> "delete" %>
-            </li>
-            <%else%>
-            <li><%= link_to "Sign up",   '/signup' %></li>
-            <li><%= link_to "Log in", '/login' %></li>
-            <%end%>
-          </ul>
-        </nav>
-      </div>
-    </header>
     <div class="container">
       <%= yield %>
       <%= render 'layouts/footer' %>
