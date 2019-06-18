@@ -10,7 +10,7 @@
 
 <div class="container2">
   <ul>
-    <%@games.each do |game|%>
+    <%@game_search.each do |game|%>
       <% if game.name.length < 25 %>
         <li>
           <div class="bottom"><%=link_to game.name, game_path(game)%><img class="game-box-art" src="<%=game.box_art%>"alt="Smiley face"></div>

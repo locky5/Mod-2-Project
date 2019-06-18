@@ -13,11 +13,10 @@ class GamesController < ApplicationController
         @new_game.save
       end
     end
-    @games = Game.search(params[:search])
-    @games = if params[:sort_by] == "name"
-      Game.order(:name)
-    else
-      Game.all
+
+    @game_search = Game.search(params[:search])
+    if params[:sort_by] == "name"
+      @game_search = @game_search.order(:name)
     end
   end
 

@@ -7,14 +7,7 @@ class Channel < ApplicationRecord
 
   def self.search(search)
     if search
-      channel = Channel.select{ |channel| channel.name.include?(search.capitalize) }
-      if channel
-        channel.each do |channel|
-          channel.name
-        end
-      else
-        Channel.select{|channel| channel.status == "live"}
-      end
+      channel = Channel.select{ |channel| channel.name.downcase.include?(search.downcase) }
     else
       Channel.select{|channel| channel.status == "live"}
     end

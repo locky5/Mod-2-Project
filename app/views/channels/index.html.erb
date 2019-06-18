@@ -10,7 +10,7 @@
 
 <div class="container3">
   <ul>
-    <%@channels.each do |channel|%>
+    <%@channels_search.each do |channel|%>
     <li>
       <div class="bottom"><%=link_to channel.name, channel_path(channel)%><img class="channel-box-art" src="<%=channel.box_art%>"alt="Smiley face"></div>
     </li>
