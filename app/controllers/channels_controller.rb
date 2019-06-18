@@ -36,16 +36,17 @@ class ChannelsController < ApplicationController
       @box_art[0] = @box_art[0] + '500x600'
       @final_box_art = @box_art.join
 
-      @channel = Channel.find_by(name: twitch_channel["user_name"])
+      @channel = Channel.find_by(twitch_user_id: twitch_channel["user_id"])
       if !@channel
-        @channel = Channel.new(name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game.id, status: twitch_channel["type"], box_art: @final_box_art)
+        @channel = Channel.new(twitch_user_id: twitch_channel["user_id"], name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game.id, status: twitch_channel["type"], box_art: @final_box_art)
         if @channel.valid?
           @channel.save
+          curr_live_channels << @channel
         end
       else
         @channel.update(title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game.id, status: twitch_channel["type"], box_art: @final_box_art)
+        curr_live_channels << @channel
       end
-      curr_live_channels << @channel
     end
     @channels_search = Channel.search(curr_live_channels, params[:search])
     if params[:sort_by] == "name"
@@ -61,7 +62,7 @@ class ChannelsController < ApplicationController
     @subscription = Subscription.new
 
     @client_id = "ustnqopkuzuzccqb0e4q0svq1185rr"
-    @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?user_login=#{@channel.name}",  { 'Client-ID': "#{@client_id}"}
+    @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?user_id=#{@channel.twitch_user_id}",  { 'Client-ID': "#{@client_id}"}
     @data = JSON.parse(@dummy_data)
     @found_channel = @data["data"].first
     @channel.update(title: @found_channel["title"], view_count: @found_channel["viewer_count"]) if @found_channel
