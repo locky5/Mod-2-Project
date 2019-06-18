@@ -23,7 +23,10 @@ class ChannelsController < ApplicationController
       end
       @language = Language.find{|language| language.abbreviation == twitch_channel["language"]}
       @language = Language.find_by(name: "NA") if !@language
-      @new_channel = Channel.new(name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game_id, status: twitch_channel["type"], box_art: twitch_channel["thumbnail_url"])
+      @box_art = twitch_channel["thumbnail_url"].split('{width}x{height}')
+      @box_art[0] = @box_art[0] + '500x600'
+      @final_box_art = @box_art.join
+      @new_channel = Channel.new(name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game_id, status: twitch_channel["type"], box_art: @final_box_art)
       if @new_channel.valid?
         @new_channel.save
       end

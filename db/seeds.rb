@@ -23,10 +23,6 @@ Language.create(abbreviation: 'am', name: 'Amharic')
 Language.create(abbreviation: 'ar', name: 'Arabic')
 Language.create(abbreviation: 'eu', name: 'Basque')
 Language.create(abbreviation: 'eu', name: 'Basque')
-
-Game.create(name: "Miscellaneous", category: "Miscaellaneous", twitch_game_id: "0", box_art: "https://static-cdn.jtvnw.net/ttv-boxart/Littlewood-272x380.jpg")
-
-
 Language.create(name: 'Bengali	', abbreviation: 'bn')
 Language.create(name: 'Bulgarian	', abbreviation: 'bg')
 Language.create(name: 'Catalan	', abbreviation: 'ca')
@@ -68,3 +64,5 @@ Language.create(name: 'Ukrainian	', abbreviation: 'uk')
 Language.create(name: 'Vietnamese	', abbreviation: 'vi')
 Language.create(name: 'Welsh	', abbreviation: 'cy')
 Language.create(name: 'NA', abbreviation: 'none')
+
+Game.create(name: "Miscellaneous", category: "Miscaellaneous", twitch_game_id: "0", box_art: "https://static-cdn.jtvnw.net/ttv-boxart/Littlewood-272x380.jpg")
