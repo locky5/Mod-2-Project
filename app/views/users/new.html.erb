@@ -15,5 +15,5 @@
   <%= f.label :language_id %>
   <%= f.collection_select(:language_id, @languages, :id, :name, prompt: true)%>
   <br>
-  <%= f.submit "Sign Up" %>
+  <%= f.submit("Sign up", class: "btn btn-large btn-primary") %>
 <% end %>
