@@ -9,16 +9,17 @@ class ChannelsController < ApplicationController
     @data = JSON.parse(@dummy_data)
 
     #look for game id
-    misc_game_id = Game.find(twitch_game_id: '0').id
+    misc_game_id = Game.find_by(twitch_game_id: '0').id
     @data["data"].each do |twitch_channel|
       if twitch_channel["game_id"]
         @game = Game.find{|game| game.twitch_game_id == twitch_channel["game_id"]}
         #creates a game if not found
-        if @game
-          @game_id = @game.id
-        else
-          @specific_game = "https://api.twitch.tv/helix/games?id=#{twitch_channel["game_id"]}"
-          Game.create(name: @specific_game["data"]["name"], category: @specific_game["data"]["name"], twitch_game_id: @specific_game["data"]["id"], box_art: @specific_game["data"]["box_art_url"])
+        if !@game
+          @specific_game = RestClient.get "https://api.twitch.tv/helix/games?id=#{twitch_channel["game_id"]}",  { 'Client-ID': "#{@client_id}"}
+          @specific_game_data = JSON.parse(@specific_game)["data"].first
+
+          @game = Game.create(name: @specific_game_data["name"], category: @specific_game_data["name"], twitch_game_id: @specific_game_data["id"], box_art: @specific_game_data["box_art_url"])
+        
         end
       else
         #set twitch_game_id to
@@ -34,9 +35,14 @@ class ChannelsController < ApplicationController
       @box_art[0] = @box_art[0] + '500x600'
       @final_box_art = @box_art.join
 
-      @new_channel = Channel.new(name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game_id, status: twitch_channel["type"], box_art: @final_box_art)
-      if @new_channel.valid?
-        @new_channel.save
+      @channel = Channel.find_by(name: twitch_channel["user_name"])
+      if !@channel
+        @channel = Channel.new(name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game.id, status: twitch_channel["type"], box_art: @final_box_art)
+        if @channel.valid?
+          @channel.save
+        end
+      else
+        @channel.update(title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game.id, status: twitch_channel["type"], box_art: @final_box_art)
       end
     end
     @channels_search = Channel.search(params[:search])
@@ -55,7 +61,7 @@ class ChannelsController < ApplicationController
     @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?first=100",  { 'Client-ID': "#{@client_id}"}
     @data = JSON.parse(@dummy_data)
     @found_channel = @data["data"].find {|channel| channel["user_name"] == @channel.name}
-    @channel.update(title: @found_channel["title"], view_count: @found_channel["viewer_count"])
+    @channel.update(title: @found_channel["title"], view_count: @found_channel["viewer_count"]) if @found_channel
   end
 
 end
