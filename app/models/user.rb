@@ -15,4 +15,12 @@ class User < ApplicationRecord
     end[0..6]
   end
 
+  def recommendChannelSubscription
+    Channel.alive.select do |channel|
+      self.subscriptions.each do |subscription|
+        channel.game_id == subscription.channel.game_id
+      end
+    end[0..6]
+  end
+
 end
