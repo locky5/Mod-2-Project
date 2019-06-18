@@ -12,7 +12,7 @@ class User < ApplicationRecord
   def recommendChannel
     Channel.alive.select do |channel|
       channel.language_id == self.language_id
-    end[0..6]
+    end[0..7]
   end
 
   def recommendChannelSubscription
@@ -20,7 +20,7 @@ class User < ApplicationRecord
       self.subscriptions.each do |subscription|
         channel.game_id == subscription.channel.game_id
       end
-    end
+    end[0..7]
   end
 
 end
