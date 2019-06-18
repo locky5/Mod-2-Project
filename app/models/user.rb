@@ -15,4 +15,12 @@ class User < ApplicationRecord
     end[0..6]
   end
 
+  def self.search(search)
+    if search
+      User.select{ |user| user.name.downcase.include?(search.downcase) }
+    else
+      User.all
+    end
+  end
+
 end
