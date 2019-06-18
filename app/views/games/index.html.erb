@@ -13,11 +13,11 @@
     <%@game_search.each do |game|%>
       <% if game.name.length < 25 %>
         <li>
-          <div class="bottom"><%=link_to game.name, game_path(game)%><img class="game-box-art" src="<%=game.box_art%>"alt="Smiley face"></div>
+          <div class="bottom"><%=link_to game.name, game_path(game)%><a href=<%=game_path(game)%>><img class="game-box-art" src="<%=game.box_art%>"alt="Smiley face"></a></div>
         </li>
       <% else %>
         <li>
-          <div class="bottom"><%=link_to game.name[0..25].split(' ').map {|word| word.capitalize}.join(' '), game_path(game)%><img class="game-box-art" src="<%=game.box_art%>"alt="Smiley face"></div>
+          <div class="bottom"><%=link_to game.name[0..22].split(' ').map {|word| word.capitalize}.join(' '), game_path(game)%><img class="game-box-art" src="<%=game.box_art%>"alt="Smiley face"></div>
         </li>
       <% end %>
     <% end %>
