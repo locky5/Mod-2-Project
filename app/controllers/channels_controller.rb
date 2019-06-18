@@ -11,7 +11,7 @@ class ChannelsController < ApplicationController
     #look for game id
     misc_game_id = Game.find_by(twitch_game_id: '0').id
     @data["data"].each do |twitch_channel|
-      if twitch_channel["game_id"]
+      if !twitch_channel["game_id"].empty?
         @game = Game.find{|game| game.twitch_game_id == twitch_channel["game_id"]}
         #creates a game if not found
         if !@game
@@ -54,15 +54,15 @@ class ChannelsController < ApplicationController
   def show
     @user_id = session[:user_id]
     @channel = Channel.find(params[:id])
+
     @subscribed = Subscription.find_by(user_id: @user_id, channel_id: @channel.id)
     @subscription = Subscription.new
 
     @client_id = "ustnqopkuzuzccqb0e4q0svq1185rr"
-    @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?first=100",  { 'Client-ID': "#{@client_id}"}
+    @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?user_login=#{@channel.name}",  { 'Client-ID': "#{@client_id}"}
     @data = JSON.parse(@dummy_data)
-    @found_channel = @data["data"].find {|channel| channel["user_name"] == @channel.name}
+    @found_channel = @data["data"].first
     @channel.update(title: @found_channel["title"], view_count: @found_channel["viewer_count"]) if @found_channel
-
     @similar_streams = Channel.all.select {|channel| channel.game_id == @channel.game_id}.delete_if{|channel| channel == @channel}[0..7]
   end
 
