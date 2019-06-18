@@ -7,6 +7,7 @@ class ChannelsController < ApplicationController
     @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?first=100",  { 'Client-ID': "#{@client_id}"}
 
     @data = JSON.parse(@dummy_data)
+    misc_game_id = Game.find(twitch_game_id: '0').id
     @data["data"].each do |twitch_channel|
       if twitch_channel["game_id"]
         @game = Game.find{|game| game.twitch_game_id == twitch_channel["game_id"]}
@@ -19,7 +20,7 @@ class ChannelsController < ApplicationController
         end
       else
         #set twitch_game_id to
-        @game_id = Game.find(twitch_game_id: '0')
+        @game_id = misc_game_id
       end
       @language = Language.find{|language| language.abbreviation == twitch_channel["language"]}
       @language = Language.find_by(name: "NA") if !@language
