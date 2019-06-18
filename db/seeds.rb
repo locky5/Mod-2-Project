@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
 Language.create(abbreviation: 'en', name: 'English')
 Language.create(abbreviation: 'fr', name: 'French')
 Language.create(abbreviation: 'es', name: 'Spanish')
@@ -65,4 +67,4 @@ Language.create(name: 'Vietnamese	', abbreviation: 'vi')
 Language.create(name: 'Welsh	', abbreviation: 'cy')
 Language.create(name: 'NA', abbreviation: 'none')
 
-Game.create(name: "Miscellaneous", category: "Miscaellaneous", twitch_game_id: "0", box_art: "https://static-cdn.jtvnw.net/ttv-boxart/Littlewood-272x380.jpg")
+
