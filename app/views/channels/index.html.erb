@@ -5,13 +5,15 @@
   <%= text_field_tag(:search, params[:search]) %>
   <%= submit_tag ("Search") %>
 <% end %>
+<br>
+<%= link_to "Channels Sorted Alphabetically", channels_path(sort_by: "name") %>
 
 <div class="container3">
-        <ul>
-          <%@channels.each do |channel|%>
-          <li>
-            <%=link_to channel.name, channel_path(channel)%>
-          </li>
-          <% end %>
-        </ul>
+  <ul>
+    <%@channels.each do |channel|%>
+    <li>
+      <%=link_to channel.name, channel_path(channel)%>
+    </li>
+    <% end %>
+  </ul>
 </div>
