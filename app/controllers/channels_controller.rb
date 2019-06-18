@@ -19,7 +19,7 @@ class ChannelsController < ApplicationController
           @specific_game_data = JSON.parse(@specific_game)["data"].first
 
           @game = Game.create(name: @specific_game_data["name"], category: @specific_game_data["name"], twitch_game_id: @specific_game_data["id"], box_art: @specific_game_data["box_art_url"])
-        
+
         end
       else
         #set twitch_game_id to
@@ -62,6 +62,8 @@ class ChannelsController < ApplicationController
     @data = JSON.parse(@dummy_data)
     @found_channel = @data["data"].find {|channel| channel["user_name"] == @channel.name}
     @channel.update(title: @found_channel["title"], view_count: @found_channel["viewer_count"]) if @found_channel
+
+    @similar_streams = Channel.all.select {|channel| channel.game_id == @channel.game_id}.delete_if{|channel| channel == @channel}[0..7]
   end
 
 end
