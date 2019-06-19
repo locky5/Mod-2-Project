@@ -25,7 +25,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     session[:user_id] = @user.id
-    redirect_to profile_path(session[:user_id])
+    flash[:updated] = "Successfully Updated!!!"
+    redirect_to edit_path(session[:user_id])
   end
 
   def create

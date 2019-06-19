@@ -1,5 +1,7 @@
 <h1>Update <%=@user.username%>'s Profile</h1>
-
+<h3><% if flash[:updated]%>
+<%=flash[:updated]%>
+<%end%></h3>
 
 <%= form_for @user do |f| %>
   <%= f.label :username %>
@@ -14,4 +16,4 @@
   <%= f.submit "Update",class: "btn btn-large btn-primary" %>
 <% end %>
 <br>
-<%= button_to "Delete My Account", profile_path(@user), class: "btn btn-large btn-primary", :method=> "delete" %>
+<%= button_to "Delete My Account", profile_path(@user), class: "btn btn-danger", :method=> "delete", data: { confirm: "Are you sure?"}%>
