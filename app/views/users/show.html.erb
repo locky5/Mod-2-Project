@@ -1,5 +1,11 @@
 <h1>Hello, <%= @user.username %></h1>
-<h2>Language: <%= @user.language.name %></h2>
+<h2>Language:
+<% @languages.each do |language| %>
+  <% if language.id == @user.language_id %>
+    <%= language.name %>
+  <% end %>
+<% end %>
+</h2>
 
 
 <h1>My Subscribed Streams</h1>
@@ -24,6 +30,9 @@
 
 <h1> Recommended Streams For <%= @user.language.name %> </h1>
 
+<% if @user.rec_channels_by_lang.empty? %>
+  <h2> No current streamers speak that language, sorry :(</h2>
+<% else %>
 <div class="container4">
   <ul>
     <%@user.rec_channels_by_lang.each do |channel|%>
@@ -39,6 +48,7 @@
     <%end%>
   </ul>
 </div>
+<% end %>
 
 <br>
 <br>
