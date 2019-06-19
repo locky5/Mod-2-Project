@@ -10,17 +10,20 @@
             <%= link_to "Profile", profile_path(session[:user_id]) %>
             </li>
             <li>
+            <%= link_to "Settings", edit_path(session[:user_id]), method: :get%>
+            </li>
+            <li>
             <%= link_to "Logout", "/logout", :method=> "delete" %>
             </li>
             <%else%>
-            <li><%= link_to "Sign up",   '/signup' %></li>
+            <li><%= link_to "Sign up", '/signup' %></li>
             <li><%= link_to "Log in", '/login' %></li>
             <%end%>
         </ul>
       </nav>
        <div class="below-header">
           <ul>
-            <a><%= link_to "All Users", "/users"%></a>
+            <a><%= link_to "All Users", "/users" %></a>
             <a><%= link_to "Channels", '/channels' %></a>
             <a><%= link_to "Games", '/games' %></a>
           </ul>

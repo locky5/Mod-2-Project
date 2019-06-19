@@ -47,6 +47,3 @@
 </div>
 <% end %>
 
-<% if @user.id == session[:user_id] %>
-<%= link_to "Settings", edit_path(@user), method: :get%>
-<% end %>
