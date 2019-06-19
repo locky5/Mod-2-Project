@@ -4,16 +4,19 @@
 <br>
 <h2><%= flash[:message] %></h2>
 <% end %>
-
+<div class="container">
 <%= form_for @user do |f| %>
   <%= f.label :username %>
-  <%= f.text_field :username %>
+  <%= f.text_field :username, class: 'text-input-box' %>
   <br>
   <%= f.label :password %>
-  <%= f.password_field :password %>
+  <%= f.password_field :password, class: 'text-input-box' %>
   <br>
+<br>
   <%= f.label :language_id %>
   <%= f.collection_select(:language_id, @languages, :id, :name, prompt: true)%>
   <br>
+  <br>
   <%= f.submit("Sign up", class: "btn btn-large btn-primary") %>
 <% end %>
+</div>

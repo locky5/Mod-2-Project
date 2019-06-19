@@ -6,12 +6,12 @@
 <% end %>
 
 
-<%= form_tag(login_path) do %>
+<%= form_tag(login_path, {:class => 'login'}) do %>
  <%= label :session, :username %>
- <%= text_field :session, :username %>
+ <%= text_field :session, :username, class: 'text-input-box' %>
  <br>
  <%= label :session, :password %>
- <%= password_field :session, :password %>
+ <%= password_field :session, :password, class: 'text-input-box' %>
  <br>
  <%= submit_tag("Log in", class: "btn btn-large btn-primary") %>
 <% end %>

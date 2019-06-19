@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     session[:user_id] = @user.id
-    flash[:updated] = "Successfully Updated!!!"
+    flash[:updated] = "Your account has been successfully updated."
     redirect_to edit_path(session[:user_id])
   end
 

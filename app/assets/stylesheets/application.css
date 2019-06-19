@@ -21,3 +21,53 @@
     font-weight: normal;
     font-style: normal;
   }
+.navbar-inverse {
+  color: #6d2ca9;
+  background-color: #6d2ca9;
+}
+
+.jumbotron {
+  margin-top: 30px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+  color: #ccc;
+  background-color: transparent;
+}
+
+div.below-header > ul > a {
+  color: #fff;
+}
+
+div.below-header > ul > a:hover {
+  color: #ccc;
+  background-color: transparent;
+}
+
+.text-input-box {
+  margin: 10px;
+}
+
+form#new_user.new_user, form.login, form.edit_user {
+  padding: 20px;
+  text-align: center;
+  width: 30%;
+  margin: auto;
+  background-color: #f1f1f1;
+  border-radius: 6px;
+}
+
+label {
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.flash-msg {
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
