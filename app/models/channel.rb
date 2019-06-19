@@ -4,12 +4,11 @@ class Channel < ApplicationRecord
   has_many :users, through: :subscriptions
   validates :twitch_user_id, uniqueness: true
 
-
-
-  def self.get_streams_by_language(language)
-    curr_live_channels = []
+def self.get_live_streams(api_args: "first=100")
+  #gets first 100 by default
+  curr_live_channels = []
     @client_id = "ustnqopkuzuzccqb0e4q0svq1185rr"
-    @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?first=8&language=#{language.abbreviation}",  { 'Client-ID': "#{@client_id}"}
+    @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?#{api_args}",  { 'Client-ID': "#{@client_id}"}
 
     @data = JSON.parse(@dummy_data)
     misc_game_id = Game.find_by(twitch_game_id: '0').id
@@ -28,6 +27,12 @@ class Channel < ApplicationRecord
         #set twitch_game_id to 0 for misc
         @game_id = misc_game_id
       end
+
+      #look for language
+      @language = Language.find{|language| language.abbreviation == twitch_channel["language"]}
+      @language = Language.find_by(name: "NA") if !@language
+
+      #mod box art
       @box_art = twitch_channel["thumbnail_url"].split('{width}x{height}')
       @box_art[0] = @box_art[0] + '500x600'
       @final_box_art = @box_art.join
@@ -38,7 +43,7 @@ class Channel < ApplicationRecord
         @user_data = JSON.parse(@user_data)
         @found_user = @user_data["data"].first["login"]
      
-        @channel = Channel.new(twitch_user_login: @found_user, twitch_user_id: twitch_channel["user_id"], name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: language.id, view_count: twitch_channel["viewer_count"], game_id: @game.id, status: twitch_channel["type"], box_art: @final_box_art)
+        @channel = Channel.new(twitch_user_login: @found_user, twitch_user_id: twitch_channel["user_id"], name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game.id, status: twitch_channel["type"], box_art: @final_box_art)
 
         if @channel.valid?
           @channel.save
@@ -49,6 +54,10 @@ class Channel < ApplicationRecord
       end
     end
     curr_live_channels
+end
+
+  def self.get_streams_by_language(language: , num_of_streams: 8)
+    self.get_live_streams(api_args: "first=#{num_of_streams}&language=#{language.abbreviation}")
   end
 
   def self.search(array, search)

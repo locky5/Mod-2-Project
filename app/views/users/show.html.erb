@@ -20,7 +20,7 @@
 
 <div class="container4">
   <ul>
-    <%@user.recommendChannel.each do |channel|%>
+    <%@user.rec_channels_by_lang.each do |channel|%>
     <li>
       <div class="bottom"><%=link_to channel.name, channel_path(channel)%><a href=<%=channel_path(channel)%>><img class="channel-box-art" src="<%=channel.box_art%>" alt="Smiley face"></a></div>
     </li>
@@ -36,6 +36,14 @@
 <% if @user.subscriptions.empty? %>
   <h2> No subscriptions yet. Go subscribe! </h2>
 <% else %>
-
+<div class="container4">
+  <ul>
+    <%@user.rec_channels_by_sub.each do |channel|%>
+    <li>
+      <div class="bottom"><%=link_to channel.name, channel_path(channel)%><a href=<%=channel_path(channel)%>><img class="channel-box-art" src="<%=channel.box_art%>" alt="Smiley face"></a></div>
+    </li>
+    <%end%>
+  </ul>
+</div>
 <% end %>
 
