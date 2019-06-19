@@ -22,7 +22,8 @@ class ChannelsController < ApplicationController
     @found_channel = JSON.parse(@dummy_data)["data"].first
 
     @channel.update(title: @found_channel["title"], view_count: @found_channel["viewer_count"]) if @found_channel
-    @similar_streams = Channel.all.select {|channel| channel.game_id == @channel.game_id}.delete_if{|channel| channel == @channel}[0..7]
+    @twitch_game_id = Game.find(@channel.game_id).twitch_game_id
+    @similar_streams = Channel.get_live_streams(api_args: "first=50&game_id=#{@twitch_game_id}").sample(8)
   end
 
 end
