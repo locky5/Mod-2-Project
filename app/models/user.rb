@@ -30,11 +30,11 @@ class User < ApplicationRecord
     channels = []
     if self.get_top_games.count == 1
       t_game_id = Game.find(top_games[0]).twitch_game_id
-      channels << Channel.get_live_streams(api_args: "first=8&game_id=#{t_game_id}") 
+      channels << Channel.get_live_streams(api_args: "first=20&game_id=#{t_game_id}").sample(4)
     else
       top_games[0..1].each do |game|
         t_game_id = Game.find(game).twitch_game_id
-        channels << Channel.get_live_streams(api_args: "first=4&game_id=#{t_game_id}")      
+        channels << Channel.get_live_streams(api_args: "first=20&game_id=#{t_game_id}").sample(4)      
       end
     end
     channels.flatten(1)
