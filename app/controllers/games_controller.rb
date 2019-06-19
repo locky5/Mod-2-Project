@@ -7,8 +7,11 @@ class GamesController < ApplicationController
     @dummy_data = RestClient.get "https://api.twitch.tv/kraken/games/top?limit=100",  { 'Client-ID': "#{@client_id}"}
     @data = JSON.parse(@dummy_data)
     @data["top"].each do |game|
+      @box_art = game["game"]["box"]["template"].split('{width}x{height}')
+      @box_art[0] = @box_art[0] + '500x600'
+      @final_box_art = @box_art.join
       #create or update check for twitch_game_id uniqueness
-      @new_game = Game.new(name: game["game"]["name"], category: game["game"]["popularity"], twitch_game_id: game["game"]["_id"], box_art: game["game"]["box"]["large"])
+      @new_game = Game.new(name: game["game"]["name"], category: game["game"]["popularity"], twitch_game_id: game["game"]["_id"], box_art: @final_box_art)
       if @new_game.valid?
         @new_game.save
       end
