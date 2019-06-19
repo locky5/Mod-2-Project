@@ -45,11 +45,8 @@ def self.get_live_streams(api_args: "first=100")
         @kraken_user_data = JSON.parse(@kraken_user_data)
         @found_user = @user_data["data"].first["login"]
 
-<<<<<<< HEAD
         @channel = Channel.new(twitch_user_login: @found_user, twitch_user_id: twitch_channel["user_id"], name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game_id, status: twitch_channel["type"], box_art: @final_box_art, logo_url: @user_data["logo"])
-=======
         @channel = Channel.new(twitch_user_login: @found_user, twitch_user_id: twitch_channel["user_id"], name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game.id, status: twitch_channel["type"], box_art: @final_box_art, logo_url: @kraken_user_data["logo"])
->>>>>>> Kevin
 
         if @channel.valid?
           @channel.save
