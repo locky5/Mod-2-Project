@@ -54,6 +54,20 @@ class UsersController < ApplicationController
     redirect_to "/"
   end
 
+  def hello_buddy
+    @user = User.find(session[:user_id])
+    @friend = User.find(params[:id])
+
+    @user.add_friend(@friend)
+  end
+
+  def goodbye_buddy
+    @user = User.find(session[:user_id])
+    @friend = User.find(params[:id])
+
+    @user.remove_friend(@friend)
+  end
+
   private
 
   def user_params
