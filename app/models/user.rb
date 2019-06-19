@@ -10,17 +10,11 @@ class User < ApplicationRecord
 
 
   def recommendChannel
-    Channel.alive.select do |channel|
-      channel.language_id == self.language_id
-    end[0..7]
+    Channel.get_streams_by_language(self.language)
   end
 
   def recommendChannelSubscription
-    Channel.alive.select do |channel|
-      self.subscriptions.each do |subscription|
-        channel.game_id == subscription.channel.game_id
-      end
-    end[0..7]
+
   end
 
 end

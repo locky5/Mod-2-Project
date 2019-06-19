@@ -66,7 +66,6 @@ class ChannelsController < ApplicationController
     @client_id = "ustnqopkuzuzccqb0e4q0svq1185rr"
     @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?user_id=#{@channel.twitch_user_id}",  { 'Client-ID': "#{@client_id}"}
     @found_channel = JSON.parse(@dummy_data)["data"].first
-    #@ = @data["data"].first
 
     @channel.update(title: @found_channel["title"], view_count: @found_channel["viewer_count"]) if @found_channel
     @similar_streams = Channel.all.select {|channel| channel.game_id == @channel.game_id}.delete_if{|channel| channel == @channel}[0..7]
