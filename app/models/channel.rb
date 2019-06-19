@@ -56,9 +56,9 @@ def self.get_live_streams(api_args: "first=100")
     curr_live_channels
 end
 
-  def self.get_streams_by_language(language: , num_of_streams: 8)
-    self.get_live_streams(api_args: "first=#{num_of_streams}&language=#{language.abbreviation}")
-  end
+def self.get_streams_by_language(language: , num_of_streams: 8)
+  self.get_live_streams(api_args: "first=#{num_of_streams}&language=#{language.abbreviation}")
+end
 
   def self.search(array, search)
     if search

@@ -12,7 +12,12 @@
   <ul>
     <%@channels_search.each do |channel|%>
     <li>
-      <div class="bottom"><%=link_to channel.name, channel_path(channel)%><a href=<%=channel_path(channel)%>><img class="channel-box-art" src="<%=channel.box_art%>"alt="Smiley face"></a></div>
+      <div class="bottom">
+        
+        <a href=<%=channel_path(channel)%>>
+          <img class="channel-box-art" src="<%=channel.box_art%>"alt="Smiley face">
+        </a>
+        <b><%=link_to channel.name, channel_path(channel)%></b></div>
     </li>
     <% end %>
   </ul>
