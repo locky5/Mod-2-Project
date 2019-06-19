@@ -67,4 +67,4 @@ Language.create(name: 'Vietnamese	', abbreviation: 'vi')
 Language.create(name: 'Welsh	', abbreviation: 'cy')
 Language.create(name: 'NA', abbreviation: 'none')
 
-Game.create(name: 'Miscellaneous', twitch_game_id: '0', box_art: 'https://static-cdn.jtvnw.net/ttv-static/404_boxart.jpg')
+Game.create(name: 'Miscellaneous', twitch_game_id: '0', box_art: 'https://static-cdn.jtvnw.net/ttv-boxart/Slots-500x600.jpg')
