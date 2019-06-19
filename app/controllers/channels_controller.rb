@@ -5,8 +5,7 @@ class ChannelsController < ApplicationController
   def index
     curr_live_channels = []
     @client_id = "ustnqopkuzuzccqb0e4q0svq1185rr"
-    @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?first=100",  { 'Client-ID': "#{@client_id}"}
-
+    @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?first=100",  { 'Client-ID': "#{@client_id}" }
     @data = JSON.parse(@dummy_data)
 
     #look for game id
