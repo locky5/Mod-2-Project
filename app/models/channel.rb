@@ -5,7 +5,7 @@ class Channel < ApplicationRecord
   validates :twitch_user_id, uniqueness: true
 
   def self.alive
-    Channel.select{|channel| channel.status == "live"}
+    curr_live_channels
   end
 
   def self.search(array, search)
