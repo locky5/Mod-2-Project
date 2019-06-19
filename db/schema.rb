@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_19_174210) do
+ActiveRecord::Schema.define(version: 2019_06_19_201226) do
 
   create_table "channels", force: :cascade do |t|
     t.string "name"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 2019_06_19_174210) do
     t.string "logo_url"
     t.index ["game_id"], name: "index_channels_on_game_id"
     t.index ["language_id"], name: "index_channels_on_language_id"
+  end
+
+  create_table "friendships", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_user_id"
+    t.index ["friend_user_id", "user_id"], name: "index_friendships_on_friend_user_id_and_user_id", unique: true
+    t.index ["user_id", "friend_user_id"], name: "index_friendships_on_user_id_and_friend_user_id", unique: true
   end
 
   create_table "games", force: :cascade do |t|

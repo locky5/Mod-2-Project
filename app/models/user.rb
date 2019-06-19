@@ -3,6 +3,11 @@ class User < ApplicationRecord
   has_many :subscriptions
   has_many :channels, through: :subscriptions
   belongs_to :language
+  has_and_belongs_to_many :friendships,
+      class_name: "User", 
+      join_table:  :friendships, 
+      foreign_key: :user_id, 
+      association_foreign_key: :friend_user_id
   validates :username, presence: true
   validates :password, presence: true
   validates :username, uniqueness: true
@@ -38,7 +43,14 @@ class User < ApplicationRecord
       end
     end
     channels.flatten(1)
-  
+  end
+
+  def add_friend(friend)
+    self.friendships << friend unless self.friendships.include?(friend) || friend == self
+  end
+    
+  def remove_friend(friend)
+      self.friendships.delete(friend)
   end
 
 end
