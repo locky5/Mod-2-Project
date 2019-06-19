@@ -23,7 +23,7 @@ class ChannelsController < ApplicationController
 
         end
       else
-        #set twitch_game_id to
+        #set twitch_game_id to 0 for misc
         @game_id = misc_game_id
       end
 
@@ -38,13 +38,15 @@ class ChannelsController < ApplicationController
 
       @channel = Channel.find_by(twitch_user_id: twitch_channel["user_id"])
       if !@channel
-        @channel = Channel.new(twitch_user_id: twitch_channel["user_id"], name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game.id, status: twitch_channel["type"], box_art: @final_box_art)
+        @user_data = RestClient.get "https://api.twitch.tv/helix/users?id=#{twitch_channel["user_id"]}",  { 'Client-ID': "#{@client_id}"}
+        @user_data = JSON.parse(@user_data)
+        @found_user = @user_data["data"].first["login"]
+        @channel = Channel.new(twitch_user_login: @found_user, twitch_user_id: twitch_channel["user_id"], name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game.id, status: twitch_channel["type"], box_art: @final_box_art)
         if @channel.valid?
           @channel.save
           curr_live_channels << @channel
         end
       else
-        @channel.update(title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game.id, status: twitch_channel["type"], box_art: @final_box_art)
         curr_live_channels << @channel
       end
     end
@@ -63,8 +65,9 @@ class ChannelsController < ApplicationController
 
     @client_id = "ustnqopkuzuzccqb0e4q0svq1185rr"
     @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?user_id=#{@channel.twitch_user_id}",  { 'Client-ID': "#{@client_id}"}
-    @data = JSON.parse(@dummy_data)
-    @found_channel = @data["data"].first
+    @found_channel = JSON.parse(@dummy_data)["data"].first
+    #@ = @data["data"].first
+
     @channel.update(title: @found_channel["title"], view_count: @found_channel["viewer_count"]) if @found_channel
     @similar_streams = Channel.all.select {|channel| channel.game_id == @channel.game_id}.delete_if{|channel| channel == @channel}[0..7]
   end
