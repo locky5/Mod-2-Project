@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @languages = Language.all
   end
 
   def new
@@ -24,9 +25,13 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    session[:user_id] = @user.id
-    flash[:updated] = "Successfully Updated!!!"
-    redirect_to edit_path(session[:user_id])
+    if @user.valid?
+      session[:user_id] = @user.id
+      redirect_to profile_path(@user)
+    else
+      flash[:message] = @user.errors.full_messages[0]
+      redirect_to edit_path(session[:user_id])
+    end
   end
 
   def create
