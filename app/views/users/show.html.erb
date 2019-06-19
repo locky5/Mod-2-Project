@@ -7,7 +7,13 @@
 <ul>
   <% @user.channels.each do |channel| %>
     <li>
-      <div class="bottom"><%= link_to channel.name, channel_path(channel) %><a href=<%=channel_path(channel)%>><img class="channel-box-art" src="<%=channel.box_art%>" alt="Smiley face"></a></div>
+      <div class="bottom">
+        <a href=<%=channel_path(channel)%>>
+          <img class="channel-box-art" src="<%=channel.box_art%>" alt="Smiley face">
+        </a>
+        <img class="channel-logo" src="<%=channel.logo_url%>" alt="Smiley face" width=30px height=30px>
+        <%= link_to channel.name, channel_path(channel) %>
+      </div>
     </li>
   <% end %>
 </ul>
@@ -22,7 +28,13 @@
   <ul>
     <%@user.rec_channels_by_lang.each do |channel|%>
     <li>
-      <div class="bottom"><%=link_to channel.name, channel_path(channel)%><a href=<%=channel_path(channel)%>><img class="channel-box-art" src="<%=channel.box_art%>" alt="Smiley face"></a></div>
+      <div class="bottom">
+        <a href=<%=channel_path(channel)%>>
+          <img class="channel-box-art" src="<%=channel.box_art%>" alt="Smiley face">
+        </a>
+        <img class="channel-logo" src="<%=channel.logo_url%>" alt="Smiley face" width=30px height=30px>
+        <%=link_to channel.name, channel_path(channel)%>
+      </div>
     </li>
     <%end%>
   </ul>
@@ -46,4 +58,3 @@
   </ul>
 </div>
 <% end %>
-
