@@ -26,15 +26,16 @@ class User < ApplicationRecord
   def rec_channels_by_sub
     #only account for top 2 games now
     #game_counts = self.get_top_games.count >= 2 ? 
-    top2_games = self.get_top_games
-    top2_games[1] = top2_games[0] if self.get_top_games.count == 1
+    top_games = self.get_top_games
     channels = []
-
-    top2_games.each do |game|
-      t_game_id = Game.find(game).twitch_game_id
-      channels << Channel.get_live_streams(api_args: "first=4&game_id=#{t_game_id}")      
+    if self.get_top_games.count == 1
+      channels << Channel.get_live_streams(api_args: "first=8&game_id=#{top_games[0]}") 
+    else
+      top_games[0..1].each do |game|
+        t_game_id = Game.find(game).twitch_game_id
+        channels << Channel.get_live_streams(api_args: "first=4&game_id=#{t_game_id}")      
+      end
     end
-      #channels << Channel.get_live_streams(api_args: "first=4&game_id=#{top2_games[1]}"")
     channels.flatten(1)
 
   end
