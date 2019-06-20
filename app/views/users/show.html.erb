@@ -1,5 +1,5 @@
 <%if @user.id == session[:user_id]%>
-<h1>Hello, <%= @user.username %>!</h1>
+<h1 >Hello, <span class="purple"><%= @user.username %>!</span>
 <%else%>
 <h1>Welcome to <%= @user.username %>'s Page!</h1>
 <%end%>
@@ -16,9 +16,9 @@
   <h4 id="subscription">You don't have any subscriptions yet.</h4>
 <% else %>
   <%if @user.id == session[:user_id]%>
-  <h1>My Subscribed Streams</h1>
+  <h1 class="purple">My Subscribed Streams</h1>
   <%else%>
-  <h1>Their Subscribed Streams</h1>
+  <h1 class="purple">Their Subscribed Streams</h1>
   <%end%>
   <div class="container4">
   <ul>
@@ -42,51 +42,53 @@
 <br>
 <br>
 
-<h1> Recommended Streams In <%= @user.language.name %> </h1>
+<%if @user.id == session[:user_id]%>
+  <h1 class="purple"> Recommended Streams In <%= @user.language.name %> </h1>
 
-<% if @user.rec_channels_by_lang.empty? %>
-  <h2> No current streamers speak that language, sorry :(</h2>
-<% else %>
-<div class="container4">
-  <ul>
-    <%@user.rec_channels_by_lang.each do |channel|%>
-    <li>
-      <div class="bottom">
-        <a href=<%=channel_path(channel)%>>
-          <img class="channel-box-art" src="<%=channel.box_art%>" alt="Smiley face">
-        </a>
-        <img class="channel-logo" src="<%=channel.logo_url%>" alt="Smiley face" width=30px height=30px>
-        <%=link_to channel.name, channel_path(channel)%>
-      </div>
-    </li>
-    <%end%>
-  </ul>
-</div>
-<% end %>
+  <% if @user.rec_channels_by_lang.empty? %>
+    <h2> No current streamers speak that language, sorry :(</h2>
+  <% else %>
+  <div class="container4">
+    <ul>
+      <%@user.rec_channels_by_lang.each do |channel|%>
+      <li>
+        <div class="bottom">
+          <a href=<%=channel_path(channel)%>>
+            <img class="channel-box-art" src="<%=channel.box_art%>" alt="Smiley face">
+          </a>
+          <img class="channel-logo" src="<%=channel.logo_url%>" alt="Smiley face" width=30px height=30px>
+          <%=link_to channel.name, channel_path(channel)%>
+        </div>
+      </li>
+      <%end%>
+    </ul>
+  </div>
+  <% end %>
 
-<br>
-<br>
+  <br>
+  <br>
 
-<h1> Recommended Streams Based On Your Subscriptions</h1>
 
-<% if @user.subscriptions.empty? %>
-  <h2> You have no subscriptions right now.</h2>
-<% else %>
-<div class="container4">
-  <ul>
-    <%@user.rec_channels_by_sub.each do |channel|%>
-    <li>
-      <div class="bottom">
-        <a href=<%=channel_path(channel)%>>
-          <img class="channel-box-art" src="<%=channel.box_art%>" alt="Smiley face">
-        </a>
-        <img class="channel-logo" src="<%=channel.logo_url%>" alt="Smiley face" width=30px height=30px>
-        <%=link_to channel.name, channel_path(channel)%>
-      </div>
-    </li>
-    <%end%>
-  </ul>
-</div>
+
+  <% if !@user.subscriptions.empty? %>
+ 
+  <h1 class="purple"> Recommended Streams Based On Your Subscriptions</h1>
+  <div class="container4">
+    <ul>
+      <%@user.rec_channels_by_sub.each do |channel|%>
+      <li>
+        <div class="bottom">
+          <a href=<%=channel_path(channel)%>>
+            <img class="channel-box-art" src="<%=channel.box_art%>" alt="Smiley face">
+          </a>
+          <img class="channel-logo" src="<%=channel.logo_url%>" alt="Smiley face" width=30px height=30px>
+          <%=link_to channel.name, channel_path(channel)%>
+        </div>
+      </li>
+      <%end%>
+    </ul>
+  </div>
+  <% end %>
 <% end %>
 <br>
 <%if @user != @main%>
