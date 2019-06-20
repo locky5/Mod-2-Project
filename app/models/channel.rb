@@ -4,12 +4,13 @@ class Channel < ApplicationRecord
   has_many :users, through: :subscriptions
   validates :twitch_user_id, uniqueness: true
 
+
 def self.get_live_streams(api_args: "first=100")
   #gets first 100 by default
   curr_live_channels = []
-    @client_id = "ustnqopkuzuzccqb0e4q0svq1185rr"
-    @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?#{api_args}",  { 'Client-ID': "#{@client_id}"}
-
+  @client_id = "ustnqopkuzuzccqb0e4q0svq1185rr"
+  @bearer_token = "q9areray9gyuf3ubedgl3y4hz5800g"
+    @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?#{api_args}",  { 'Client-ID': "#{@client_id}", 'Authorization': "Bearer #{@bearer_token}"}
     @data = JSON.parse(@dummy_data)
     misc_game_id = Game.find_by(twitch_game_id: '0').id
     @data["data"].each do |twitch_channel|
@@ -17,8 +18,7 @@ def self.get_live_streams(api_args: "first=100")
         @game = Game.find{|game| game.twitch_game_id == twitch_channel["game_id"]}
         #creates a game if not found
         if !@game
-          @specific_game = RestClient.get "https://api.twitch.tv/helix/games?id=#{twitch_channel["game_id"]}",  { 'Client-ID': "#{@client_id}"}
-          @specific_game_data = JSON.parse(@specific_game)["data"].first
+          @specific_game = RestClient.get "https://api.twitch.tv/helix/games?id=#{twitch_channel["game_id"]}", { 'Client-ID': "#{@client_id}", 'Authorization': "Bearer #{@bearer_token}"}
 
           @game = Game.create(name: @specific_game_data["name"], category: @specific_game_data["name"], twitch_game_id: @specific_game_data["id"], box_art: @specific_game_data["box_art_url"])
           @game_id = @game.id
@@ -39,7 +39,7 @@ def self.get_live_streams(api_args: "first=100")
 
       @channel = Channel.find_by(twitch_user_id: twitch_channel["user_id"])
       if !@channel
-          @user_data = RestClient.get "https://api.twitch.tv/helix/users?id=#{twitch_channel["user_id"]}",  { 'Client-ID': "#{@client_id}"}
+          @user_data = RestClient.get "https://api.twitch.tv/helix/users?id=#{twitch_channel["user_id"]}",  { 'Client-ID': "#{@client_id}", 'Authorization': "Bearer #{@bearer_token}"}
           @user_data = JSON.parse(@user_data)["data"]
 
           if !@user_data.empty?
