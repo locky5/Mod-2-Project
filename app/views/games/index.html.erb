@@ -6,18 +6,29 @@
   <%= submit_tag ("Search") %>
 <% end %>
 <br>
-<%= link_to "Sort All Games Alphabetically", games_path(sort_by: "name") %>
+
+<p class="sort"><%= link_to "Sort All Games Alphabetically", games_path(sort_by: "name") %></p>
 
 <div class="container2">
   <ul>
     <%@game_search.each do |game|%>
       <% if game.name.length < 25 %>
         <li>
-          <div class="bottom"><a href=<%=game_path(game)%>><img class="game-box-art" src="<%=game.box_art%>"alt="Smiley face"></a><%=link_to game.name, game_path(game)%></div>
+          <div class="bottom">
+            <a href=<%=game_path(game)%>>
+              <img class="game-box-art" src="<%=game.box_art%>"alt="Smiley face">
+            </a>
+            <%=link_to game.name, game_path(game)%>
+          </div>
         </li>
       <% else %>
         <li>
-          <div class="bottom"><a href=<%=game_path(game)%>><img class="game-box-art" src="<%=game.box_art%>"alt="Smiley face"></a><%=link_to game.name[0..22].split(' ').map {|word| word.capitalize}.join(' '), game_path(game)%></div>
+          <div class="bottom">
+            <a href=<%=game_path(game)%>>
+              <img class="game-box-art" src="<%=game.box_art%>"alt="Smiley face">
+            </a>
+            <%=link_to game.name[0..22].split(' ').map {|word| word.capitalize}.join(' ') + "..", game_path(game)%>
+          </div>
         </li>
       <% end %>
     <% end %>

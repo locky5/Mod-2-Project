@@ -8,8 +8,13 @@
   <a href=<%=channel_path(channel)%>>
     <img class="channel-box-art" src="<%=channel.box_art%>"alt="Smiley face">
   </a>
+  </div>
+  <div id="channel-info">
+
   <img class="channel-logo" src="<%=channel.logo_url%>" alt="Smiley face" width=30px height=30px>
-  <%= link_to channel.name, channel_path(channel) %></div>
+  <%= link_to channel.name, channel_path(channel) %>
+  <b><p id="view-count">Viewer Count: <%= channel.view_count %></p></b>
+</div>
 </li>
 <% end %>
 </ul>
