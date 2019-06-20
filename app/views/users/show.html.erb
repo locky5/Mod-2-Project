@@ -10,6 +10,15 @@
   <% end %>
 <% end %>
 </h2>
+<%if @user != @main%>
+  <%if @main.friendships.exclude?(@user)%>
+  <%=button_to "Follow!", { action: "buddy", id: @user.id },
+                                method: :post%>
+  <%else%>
+  <%=button_to "Unfollow!", { action: "buddy", id: @user.id },
+                                method: :post%>                     
+  <%end%>                              
+<%end%>
 
 <%if @user.id == session[:user_id]%>
 <h1>My Subscribed Streams</h1>
@@ -82,21 +91,14 @@
 </div>
 <% end %>
 <br>
-<%if @user != @main%>
-  <%if @main.friendships.exclude?(@user)%>
-  <%=button_to "Follow!", { action: "buddy", id: @user.id },
-                                method: :post%>
-  <%else%>
-  <%=button_to "Unfollow!", { action: "buddy", id: @user.id },
-                                method: :post%>                     
-  <%end%>                              
-<%end%>
+
 
 <br>
-
+<div class="sidebar">
 Following: <ol><%@user.friendships.each do |friend|%>
           <li>
           <%=link_to friend.username, profile_path(friend)%>
           </li>
           <%end%>
 <ol>
+<div>
