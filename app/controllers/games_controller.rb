@@ -25,8 +25,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @channels = Channel.all
-    @this_games_channels = @channels.select {|channel| channel["game_id"] == @game.id}
+    @channels = Channel.get_live_streams(api_args: "first=100&game_id=#{@game.twitch_game_id}")
 
   end
 

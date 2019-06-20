@@ -10,42 +10,74 @@
   <%end %>
 </div>
 
-
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
+<div class="container">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item active">
-      <img src="https://www.nakedcapitalism.com/wp-content/uploads/2019/06/D7eSNLzWwAAKXCp.jpg-large-e1560591104224.jpeg" alt="Los Angeles">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <div id="twitch-embed"></div>
+        <!-- Load the Twitch embed script -->
+        <script src="https://embed.twitch.tv/embed/v1.js"></script>
+        <!-- Create a Twitch.Embed object that will render within the "twitch-embed" root element. -->
+        <script type="text/javascript">
+          new Twitch.Embed("twitch-embed", {
+            width: 1100,
+            height: 480,
+            channel: "shroud"
+          });
+        </script>
+      </div>
+
+      <div class="item">
+        <div id="twitch-embed"></div>
+        <!-- Load the Twitch embed script -->
+        <script src="https://embed.twitch.tv/embed/v1.js"></script>
+        <!-- Create a Twitch.Embed object that will render within the "twitch-embed" root element. -->
+        <script type="text/javascript">
+          new Twitch.Embed("twitch-embed", {
+            width: 1100,
+            height: 480,
+            channel: "ninja"
+          });
+        </script>
+      </div>
+
+      <div class="item">
+        <div id="twitch-embed"></div>
+        <!-- Load the Twitch embed script -->
+        <script src="https://embed.twitch.tv/embed/v1.js"></script>
+        <!-- Create a Twitch.Embed object that will render within the "twitch-embed" root element. -->
+        <script type="text/javascript">
+          new Twitch.Embed("twitch-embed", {
+            width: 1100,
+            height: 480,
+            channel: "nightblue3"
+          });
+        </script>
+      </div>
     </div>
 
-    <div class="item">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Shaqi_jrvej.jpg" alt="Chicago">
-    </div>
-
-    <div class="item">
-      <img src="https://therightsofnature.org/wp-content/uploads/2018/01/turkey-3048299_1920.jpg" alt="New York">
-    </div>
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
-
-  <!-- Left and right controls -->
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-    <span class="sr-only">Next</span>
-  </a>
 </div>

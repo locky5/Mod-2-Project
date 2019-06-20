@@ -8,6 +8,7 @@ class ChannelsController < ApplicationController
     if params[:sort_by] == "name"
       @channels_search = @channels_search.sort_by{|channel| channel.name}
     end
+    @languages = Language.all
   end
 
   def show

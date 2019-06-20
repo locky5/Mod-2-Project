@@ -5,7 +5,9 @@
   <%= text_field_tag(:search, params[:search]) %>
   <%= submit_tag ("Search") %>
 <% end %>
+
 <br>
+
 <p class="sort"><%= link_to "Sort All Channels Alphabetically", channels_path(sort_by: "name") %></p>
 
 <div class="container3">
@@ -18,6 +20,13 @@
         </a>
         <img class="channel-logo" src="<%=channel.logo_url%>" alt="Smiley face" width=40px height=40px>
         <b><%=link_to channel.name, channel_path(channel)%></b>
+
+        <% @languages.each do |language| %>
+          <% if language.id == channel.language_id %>
+            <%= language.name %>
+          <% end %>
+        <% end %>
+
       </div>
     </li>
     <% end %>

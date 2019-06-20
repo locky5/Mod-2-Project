@@ -1,6 +1,140 @@
 <body class="container about"> </body>
 
-<h1>About us</h1>
+<h1>About OUR.TWITCH</h1>
 
-<p>This page project is ripped off twitch and creating models that use it</p>
-<p>The only user function that this program has is to log in and out and subscribe</p>
+<p>This project was built using the Twitch API and focuses on using the basic CRUD actions with Ruby on Rails to build a functional app.</p>
+<p>This application used five different models, which are as listed:</p>
+<ul>
+  <li>
+    Channel:
+    <ul>
+      <li>
+      has many subscriptions
+      </li>
+      <li>
+      has many users through subscriptions
+      </li>
+      <li>
+      belongs to a game
+      </li>
+    </ul>
+  </li>
+  <li>
+    Game:
+    <ul>
+      <li>
+      has many channels
+      </li>
+    </ul>
+  </li>
+  <li>
+    Language:
+    <ul>
+      <li>
+      has many users
+      </li>
+    </ul>
+  </li>
+  <li>
+    Subscription:
+    <ul>
+      <li>
+      belongs to a user
+      </li>
+      <li>
+      belongs to a channel
+      </li>
+    </ul>
+  </li>
+  <li>
+    User:
+    <ul>
+      <li>
+      has many subscriptions
+      </li>
+      <li>
+      has many channels through subscriptions
+      </li>
+      <li>
+      belongs to a language
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<br>
+
+<p> Furthermore, here are how some of our CRUD functionalities were demonstrated: <p>
+  <ul>
+    <li>
+      Create:
+      <ul>
+        <li>
+        creating a user via a <%= link_to "SignUp Form", "/signup" %>
+        </li>
+        <li>
+        creating a session via a <%= link_to "Login Form", "/login" %>
+        </li>
+        <li>
+        creating a channel via the Twitch API
+        </li>
+        <li>
+        creating a game via the Twitch API
+        </li>
+        <li>
+        creating a language via seeding
+        </li>
+        <li>
+        creating a subscription via a button
+        </li>
+      </ul>
+    </li>
+    <li>
+      Read:
+      <ul>
+        <li>
+        showing a user and all of his subscriptions and recommendations
+        </li>
+        <li>
+        showing a channel and of the ones similar to it
+        </li>
+        <li>
+        showing a game and all of the channels playing that game
+        </li>
+      </ul>
+    </li>
+    <li>
+      Update:
+      <ul>
+        <li>
+        updating a channel's title and viewer count over time
+        </li>
+      </ul>
+    </li>
+    <li>
+      Destroy:
+      <ul>
+        <li>
+        destroying a session via a logout button
+        </li>
+        <li>
+        destroying a user via a "Destroy User" button
+        </li>
+        <li>
+        destroying a subscription via a "Unsubscribe" button
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+<br>
+
+<p> Before running our application, please be sure to follow these steps! </p>
+<h5> 1. Make sure to bundle install first! </h5>
+<h5> 2. In the directory, run 'rails db:migration' and 'rails db:seed'. </h5>
+<h5> 3. Run 'rails s' to begin the server. </h5>
+<h5> 3. In your browser, go to <%= link_to "localhost:3000", "/" %> </h5>
+
+<br>
+
+<p> Please be sure to report any bugs to Kevin Dai. <p>
