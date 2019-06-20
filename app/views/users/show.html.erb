@@ -104,33 +104,17 @@
 <% end %>
 <br>
 
-<% if !@user.friendships.empty? %>
-<div>
-<h3>Following:</h3>
-  <%if @user.friendships.size == 0%>
-  <h5>Start following <%=link_to "Users", '/users'%></h5>
-  <%else%>
-  <%@user.friendships.each do |friend|%>
-    <p>
-   <%=@user.friendships.index(friend)+1%>. <%=link_to friend.username, profile_path(friend)%>
-    </p>
-  <%end%>
-  <%end%>
-<div>
+<%if @user.id == session[:user_id]%>
+  <h1 class="purple">My Followings</h1>
+  <% if !@user.friendships.empty? %>
+    <ul class="center-list">
+    <h4 class="center-list"><%@user.friendships.each do |friend|%>
+      <%=link_to friend.username, profile_path(friend)%></h4>
+    <%end%>
+  </ul>
 <% else %>
-<div>
-  <%if @user.friendships.size == 0%>
-  <div class ="list">
-  <h5>Start following <%=link_to "Users", '/users'%></h5>
-  </div>
-  <%else%>
-  <ol>
-  <%@user.friendships.each do |friend|%>
-    <li>
-   <%=@user.friendships.index(friend)+1%>. <%=link_to friend.username, profile_path(friend)%>
-    </li>
-  <%end%>
-  </ol>
-  <%end%>
-<div>
+  <h4 class="center-list">Start following <%=link_to "Users", '/users'%></h4>
 <% end %>
+
+<% end %>
+
