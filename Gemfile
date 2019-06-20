@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 
 #  Use dotenv for git-ignoring and storing constants. 
 gem 'dotenv-rails', groups: [:development, :test]
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
