@@ -16,25 +16,11 @@
                                 method: :post%>
   <%else%>
   <%=button_to "Unfollow!", { action: "buddy", id: @user.id },
-                                method: :post%>                     
-  <%end%>                              
+                                method: :post%>
+  <%end%>
 <%end%>
 
 <br>
-<div class="follow">
-<h3>Following:</h3>
-<div class="list">
-  <%if @user.friendships.size == 0%>
-  <h5>Start following <%=link_to "Users", '/users'%></h5>
-  <%else%>
-  <%@user.friendships.each do |friend|%>
-    <p>
-   <%=@user.friendships.index(friend)+1%>. <%=link_to friend.username, profile_path(friend)%>
-    </p>
-  <%end%>
-  <%end%>
-</div>
-<div>
 
 
 <br>
@@ -97,7 +83,7 @@
 
 
   <% if !@user.subscriptions.empty? %>
- 
+
   <h1 class="purple"> Recommended Streams Based On Your Subscriptions</h1>
   <div class="container4">
     <ul>
@@ -118,4 +104,33 @@
 <% end %>
 <br>
 
-
+<% if !@user.friendships.empty? %>
+<div>
+<h3>Following:</h3>
+  <%if @user.friendships.size == 0%>
+  <h5>Start following <%=link_to "Users", '/users'%></h5>
+  <%else%>
+  <%@user.friendships.each do |friend|%>
+    <p>
+   <%=@user.friendships.index(friend)+1%>. <%=link_to friend.username, profile_path(friend)%>
+    </p>
+  <%end%>
+  <%end%>
+<div>
+<% else %>
+<div>
+  <%if @user.friendships.size == 0%>
+  <div class ="list">
+  <h5>Start following <%=link_to "Users", '/users'%></h5>
+  </div>
+  <%else%>
+  <ol>
+  <%@user.friendships.each do |friend|%>
+    <li>
+   <%=@user.friendships.index(friend)+1%>. <%=link_to friend.username, profile_path(friend)%>
+    </li>
+  <%end%>
+  </ol>
+  <%end%>
+<div>
+<% end %>
