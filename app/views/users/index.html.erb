@@ -9,8 +9,10 @@
 <% end %>
 <br>
 
+<% if params[:search] %>
 <ol>
 <%@user_search.each do |user|%>
 <li><%= link_to user.username, profile_path(user) %> </li>
 <%end%>
 </ol>
+<% end %>
