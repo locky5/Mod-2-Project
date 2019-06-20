@@ -12,13 +12,30 @@
 </h2>
 <%if @user != @main%>
   <%if @main.friendships.exclude?(@user)%>
-  <%=button_to "Follow!", { action: "buddy", id: @user.id },
+  <%=button_to "Follow!", { action: "buddy", id: @user.id, class: "btn btn-primary" },
                                 method: :post%>
   <%else%>
   <%=button_to "Unfollow!", { action: "buddy", id: @user.id },
                                 method: :post%>                     
   <%end%>                              
 <%end%>
+
+<br>
+<div class="follow">
+<h3>Following:</h3>
+<div class="list">
+  <%if @user.friendships.size == 0%>
+  <h5>Start following <%=link_to "Users", '/users'%></h5>
+  <%else%>
+  <%@user.friendships.each do |friend|%>
+    <p>
+   <%=@user.friendships.index(friend)+1%>. <%=link_to friend.username, profile_path(friend)%>
+    </p>
+  <%end%>
+  <%end%>
+</div>
+<div>
+
 
 <br>
 <% if @user.subscriptions.empty? %>
@@ -102,12 +119,3 @@
 <br>
 
 
-<br>
-<div class="sidebar">
-Following: <ol><%@user.friendships.each do |friend|%>
-          <li>
-          <%=link_to friend.username, profile_path(friend)%>
-          </li>
-          <%end%>
-<ol>
-<div>
