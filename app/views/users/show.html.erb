@@ -42,7 +42,7 @@
 <br>
 <br>
 
-<h1> Recommended Streams For <%= @user.language.name %> </h1>
+<h1> Recommended Streams In <%= @user.language.name %> </h1>
 
 <% if @user.rec_channels_by_lang.empty? %>
   <h2> No current streamers speak that language, sorry :(</h2>
@@ -95,8 +95,8 @@
                                 method: :post%>
   <%else%>
   <%=button_to "Unfollow!", { action: "buddy", id: @user.id },
-                                method: :post%>                     
-  <%end%>                              
+                                method: :post%>
+  <%end%>
 <%end%>
 
 <br>
