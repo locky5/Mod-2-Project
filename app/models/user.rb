@@ -53,4 +53,11 @@ class User < ApplicationRecord
       self.friendships.delete(friend)
   end
 
+  def self.search(search)
+    if search
+      User.select{ |user| user.username.downcase.include?(search.downcase) }
+    else
+      User.all
+    end
+  end
 end

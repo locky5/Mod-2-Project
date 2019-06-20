@@ -5,10 +5,16 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+
+    @user_search = User.search(params[:search])
+    if params[:sort_by] == "username"
+      @game_search = @game_search.order(:username)
+    end
   end
 
   def show
     @user = User.find(params[:id])
+    @main = User.find(session[:user_id])
     @languages = Language.all
   end
 
@@ -25,6 +31,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
+
     if @user.valid?
       session[:user_id] = @user.id
       redirect_to profile_path(@user)
@@ -36,6 +43,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     if @user.valid?
       @user.save
       session[:user_id] = @user.id
@@ -48,24 +56,23 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(session[:user_id])
+
     @user.subscriptions.delete_all
     @user.delete
     session[:user_id] = nil
     redirect_to "/"
   end
 
-  def hello_buddy
+  def buddy
     @user = User.find(session[:user_id])
     @friend = User.find(params[:id])
-
-    @user.add_friend(@friend)
-  end
-
-  def goodbye_buddy
-    @user = User.find(session[:user_id])
-    @friend = User.find(params[:id])
-
-    @user.remove_friend(@friend)
+    
+    if @user.friendships.include?(@friend)
+      @user.remove_friend(@friend)
+    else
+      @user.add_friend(@friend)
+    end
+    redirect_to profile_path(@friend)
   end
 
   private

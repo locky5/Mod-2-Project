@@ -1,4 +1,8 @@
-<h1>Hello, <%= @user.username %></h1>
+<%if @user.id == session[:user_id]%>
+<h1>Hello, <%= @user.username %>!</h1>
+<%else%>
+<h1>Welcome to <%= @user.username %>'s Page!</h1>
+<%end%>
 <h2>Language:
 <% @languages.each do |language| %>
   <% if language.id == @user.language_id %>
@@ -7,8 +11,11 @@
 <% end %>
 </h2>
 
-
+<%if @user.id == session[:user_id]%>
 <h1>My Subscribed Streams</h1>
+<%else%>
+<h1>Their Subscribed Streams</h1>
+<%end%>
 <div class="container4">
 <ul>
   <% @user.channels.each do |channel| %>
@@ -74,3 +81,22 @@
   </ul>
 </div>
 <% end %>
+<br>
+<%if @user != @main%>
+  <%if @main.friendships.exclude?(@user)%>
+  <%=button_to "Follow!", { action: "buddy", id: @user.id },
+                                method: :post%>
+  <%else%>
+  <%=button_to "Unfollow!", { action: "buddy", id: @user.id },
+                                method: :post%>                     
+  <%end%>                              
+<%end%>
+
+<br>
+
+Following: <ol><%@user.friendships.each do |friend|%>
+          <li>
+          <%=link_to friend.username, profile_path(friend)%>
+          </li>
+          <%end%>
+<ol>
