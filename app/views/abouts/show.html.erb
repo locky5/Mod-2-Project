@@ -60,6 +60,9 @@
       has many subscriptions
       </li>
       <li>
+      has many friendships with other users
+      </li>
+      <li>
       has many channels through subscriptions
       </li>
       <li>
@@ -144,6 +147,18 @@
 <h5> 2. In the directory, run 'rails db:migration' and 'rails db:seed'. </h5>
 <h5> 3. Run 'rails s' to begin the server. </h5>
 <h5> 4. In your browser, go to <%= link_to "localhost:3000", "/" %> </h5>
+
+<br>
+
+<p> Some common bugs may include: </p>
+<ul>
+  <li>
+    <%= link_to "429: Too Many Requests", "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429" %>
+  </li>
+  <li>
+    <%= link_to "400: Bad Request", "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400" %>
+  </li>
+</ul>
 
 <br>
 

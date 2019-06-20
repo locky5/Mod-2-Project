@@ -1,3 +1,78 @@
 // Place all the styles related to the Languages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Place all the styles related to the Games controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.container4 {
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.container4 ul{
+    padding: 0;
+    margin: 0;
+}
+
+
+.container4 ul li{
+    float:left;
+    list-style: none;
+    width:20%;
+    height:100%;
+    background: white;
+    margin :20px 20px 20px 20px;
+    box-sizing: border-box;
+}
+.container4 ul li:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.container4 ul li .bottom{
+    width: 100%;
+    height: 100%;
+    line-height: 30px;
+    background: white;
+    text-align: center;
+    color:white;
+    font-size: 15px;
+
+
+}
+
+@media screen and (max-width:1250px){
+    .container4 ul li{
+        width:40%;
+        margin-left: 40px;
+
+    }
+}
+
+.channel-box-art {
+  width: 100%;
+  height: 100%;
+  /*border-radius: 0 0 17px 17px;*/
+}
+
+form.button_to {
+    text-align: center;
+}
+
+h4#subscription {
+    text-align: center;
+    color: #337ab7;
+}
+
+.purple {
+    color: #6d2ca9;
+}

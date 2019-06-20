@@ -32,9 +32,20 @@
     <div class="carousel-inner">
       <div class="item active">
         <iframe class = "twitch-player"
-          src="https://player.twitch.tv/?channel=faker&muted=true"
-          width="500"
-          height="300"
+          src="https://player.twitch.tv/?channel=<%=@top_three_channels[0].name%>&muted=true"
+          width="700"
+          height="500"
+          frameborder="100"
+          scrolling="no"
+          allowfullscreen="true">
+        </iframe>
+      </div>
+
+      <div class="item">
+        <iframe
+          src="https://player.twitch.tv/?channel=<%=@top_three_channels[1].name%>&muted=true"
+          width="700"
+          height="500"
           frameborder="0"
           scrolling="no"
           allowfullscreen="true">
@@ -43,20 +54,9 @@
 
       <div class="item">
         <iframe
-          src="https://player.twitch.tv/?channel=ninja&muted=true"
-          width="500"
-          height="300"
-          frameborder="0"
-          scrolling="no"
-          allowfullscreen="true">
-        </iframe>
-      </div>
-
-      <div class="item">
-        <iframe
-          src="https://player.twitch.tv/?channel=shroud&muted=true"
-          width="500"
-          height="300"
+          src="https://player.twitch.tv/?channel=<%=@top_three_channels[2].name%>&muted=true"
+          width="700"
+          height="500"
           frameborder="0"
           scrolling="no"
           allowfullscreen="true">

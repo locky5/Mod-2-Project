@@ -1,5 +1,7 @@
 <h1><%= @game.name %> Streams</h1>
 
+<h2>Total View Count: <%=@game.category%></h2>
+
 <div class="container2">
 <ul>
 <% @channels.each do |channel| %>
@@ -14,7 +16,7 @@
   <img class="channel-logo" src="<%=channel.logo_url%>" alt="Smiley face" width=30px height=30px>
   <%= link_to channel.name, channel_path(channel) %>
   <b><p id="view-count">Viewer Count: <%= channel.view_count %></p></b>
-</div>
+  </div>
 </li>
 <% end %>
 </ul>

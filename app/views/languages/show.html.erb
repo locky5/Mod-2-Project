@@ -1,0 +1,17 @@
+<h1><%= @language.name %> Streams</h1>
+
+<div class="container4">
+  <ul>
+    <%@channels.each do |channel|%>
+    <li>
+      <div class="bottom">
+        <a href=<%=channel_path(channel)%>>
+          <img class="channel-box-art" src="<%=channel.box_art%>" alt="Smiley face">
+        </a>
+        <img class="channel-logo" src="<%=channel.logo_url%>" alt="Smiley face" width=30px height=30px>
+        <%=link_to channel.name, channel_path(channel)%>
+      </div>
+    </li>
+    <%end%>
+  </ul>
+</div>
