@@ -77,3 +77,12 @@ header.navbar.navbar-fixed-top.navbar-inverse{
 ul.nav.navbar-nav.navbar-right > li > a {
   color: #fff;
 }
+
+.purple {
+    color: #6d2ca9;
+}
+
+div#myCarousel, .carousel-inner {
+  width: 500px;
+  margin: auto;
+}
