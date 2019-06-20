@@ -8,8 +8,8 @@ class Channel < ApplicationRecord
 def self.get_live_streams(api_args: "first=100")
   #gets first 100 by default
   curr_live_channels = []
-  @client_id = "ustnqopkuzuzccqb0e4q0svq1185rr"
-  @bearer_token = "q9areray9gyuf3ubedgl3y4hz5800g"
+  @client_id = ENV["CLIENT_ID"]
+  @bearer_token = ENV["BEARER_TOKEN"]
     @dummy_data = RestClient.get "https://api.twitch.tv/helix/streams?#{api_args}",  { 'Client-ID': "#{@client_id}", 'Authorization': "Bearer #{@bearer_token}"}
     @data = JSON.parse(@dummy_data)
     misc_game_id = Game.find_by(twitch_game_id: '0').id
@@ -21,7 +21,7 @@ def self.get_live_streams(api_args: "first=100")
           #creates a game if not found
           if !@game
             @specific_game = RestClient.get "https://api.twitch.tv/helix/games?id=#{twitch_channel["game_id"]}", { 'Client-ID': "#{@client_id}", 'Authorization': "Bearer #{@bearer_token}"}
-
+            @specific_game_data = JSON.parse(@specific_game)
             @game = Game.create(name: @specific_game_data["name"], category: @specific_game_data["name"], twitch_game_id: @specific_game_data["id"], box_art: @specific_game_data["box_art_url"])
           end
           @game_id = @game.id
