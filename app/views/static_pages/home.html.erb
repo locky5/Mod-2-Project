@@ -23,45 +23,28 @@
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
+      
+      <% @top_channels.each_with_index do |channel, index| %>
+      <li data-target="#myCarousel" data-slide-to="<%= index %>" class="active"></li>
+      <% end %>
     </ol>
 
+ <div class="carousel-inner">
+  <% @top_channels.each do |channel| %>
+  <div class="item <%= 'active' if channel == @top_channels.first %> ">
+      <iframe class = "twitch-player"
+        src="https://player.twitch.tv/?channel=<%=channel.name%>&muted=true"
+        width="700"
+        height="500"
+        frameborder="100"
+        scrolling="no"
+        allowfullscreen="true">
+      </iframe>
+    </div>
+  <% end %>
+  
     <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <iframe class = "twitch-player"
-          src="https://player.twitch.tv/?channel=<%=@top_three_channels[0].name%>&muted=true"
-          width="700"
-          height="500"
-          frameborder="100"
-          scrolling="no"
-          allowfullscreen="true">
-        </iframe>
-      </div>
-
-      <div class="item">
-        <iframe
-          src="https://player.twitch.tv/?channel=<%=@top_three_channels[1].name%>&muted=true"
-          width="700"
-          height="500"
-          frameborder="0"
-          scrolling="no"
-          allowfullscreen="true">
-        </iframe>
-      </div>
-
-      <div class="item">
-        <iframe
-          src="https://player.twitch.tv/?channel=<%=@top_three_channels[2].name%>&muted=true"
-          width="700"
-          height="500"
-          frameborder="0"
-          scrolling="no"
-          allowfullscreen="true">
-        </iframe>
-      </div>
+   
     </div>
 
     <!-- Left and right controls -->
