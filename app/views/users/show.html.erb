@@ -20,9 +20,9 @@
   <%end%>                              
 <%end%>
 
-
+<br>
 <% if @user.subscriptions.empty? %>
-  <h4 id="subscription">You don't have any subscriptions yet.</h4>
+  <h4 id="subscription">There are no subscriptions yet.</h4>
 <% else %>
   <%if @user.id == session[:user_id]%>
   <h1 class="purple">My Subscribed Streams</h1>
