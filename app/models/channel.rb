@@ -21,8 +21,9 @@ def self.get_live_streams(api_args: "first=100")
           #creates a game if not found
           if !@game
             @specific_game = RestClient.get "https://api.twitch.tv/helix/games?id=#{twitch_channel["game_id"]}", { 'Client-ID': "#{@client_id}", 'Authorization': "Bearer #{@bearer_token}"}
-
+            @specific_game_data = JSON.parse(@specific_game)["data"].first
             @game = Game.create(name: @specific_game_data["name"], category: @specific_game_data["name"], twitch_game_id: @specific_game_data["id"], box_art: @specific_game_data["box_art_url"])
+  
           end
           @game_id = @game.id
         else
