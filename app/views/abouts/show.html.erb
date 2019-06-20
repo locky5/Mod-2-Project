@@ -2,7 +2,7 @@
 
 <h1>About OUR.TWITCH</h1>
 
-<p>This project was built using the Twitch API and focuses on using the basic CRUD actions with Ruby on Rails to build a functional app.</p>
+<p>This project was built using the <%= link_to "Twitch API", "https://dev.twitch.tv/docs/" %> and focuses on using the basic CRUD actions with Ruby on Rails to build a functional app where a user can browse <%= link_to "games", "/games" %> and <%= link_to "channels", "/channels" %> and make subscriptions to the latter.</p>
 <p>This application used five different models, which are as listed:</p>
 <ul>
   <li>
@@ -76,10 +76,10 @@
         creating a session via a <%= link_to "Login Form", "/login" %>
         </li>
         <li>
-        creating a channel via the Twitch API
+        creating a channel via the <%= link_to "Twitch API", "https://dev.twitch.tv/docs/" %>
         </li>
         <li>
-        creating a game via the Twitch API
+        creating a game via the <%= link_to "Twitch API", "https://dev.twitch.tv/docs/" %>
         </li>
         <li>
         creating a language via seeding
@@ -109,6 +109,9 @@
         <li>
         updating a channel's title and viewer count over time
         </li>
+        <li>
+        updating a user's params via an edit form
+        </li>
       </ul>
     </li>
     <li>
@@ -133,7 +136,7 @@
 <h5> 1. Make sure to bundle install first! </h5>
 <h5> 2. In the directory, run 'rails db:migration' and 'rails db:seed'. </h5>
 <h5> 3. Run 'rails s' to begin the server. </h5>
-<h5> 3. In your browser, go to <%= link_to "localhost:3000", "/" %> </h5>
+<h5> 4. In your browser, go to <%= link_to "localhost:3000", "/" %> </h5>
 
 <br>
 
