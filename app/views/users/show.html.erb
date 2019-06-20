@@ -12,10 +12,10 @@
 </h2>
 <%if @user != @main%>
   <%if @main.friendships.exclude?(@user)%>
-  <%=button_to "Follow!", { action: "buddy", id: @user.id, class: "btn btn-primary" },
+  <%=button_to "Follow", { action: "buddy", id: @user.id, class: "btn btn-primary" },
                                 method: :post%>
   <%else%>
-  <%=button_to "Unfollow!", { action: "buddy", id: @user.id },
+  <%=button_to "Unfollow", { action: "buddy", id: @user.id },
                                 method: :post%>
   <%end%>
 <%end%>
@@ -50,8 +50,6 @@
 <% end %>
 
 
-
-<br>
 <br>
 
 <%if @user.id == session[:user_id]%>
@@ -102,6 +100,9 @@
   </div>
   <% end %>
 <% end %>
+
+
+
 <br>
 
 <%if @user.id == session[:user_id]%>
@@ -115,6 +116,4 @@
 <% else %>
   <h4 class="center-list">Start following <%=link_to "Users", '/users'%></h4>
 <% end %>
-
 <% end %>
-
