@@ -11,26 +11,33 @@
 <% end %>
 </h2>
 
-<%if @user.id == session[:user_id]%>
-<h1>My Subscribed Streams</h1>
-<%else%>
-<h1>Their Subscribed Streams</h1>
-<%end%>
-<div class="container4">
-<ul>
-  <% @user.channels.each do |channel| %>
-    <li>
-      <div class="bottom">
-        <a href=<%=channel_path(channel)%>>
-          <img class="channel-box-art" src="<%=channel.box_art%>" alt="Smiley face">
-        </a>
-        <img class="channel-logo" src="<%=channel.logo_url%>" alt="Smiley face" width=30px height=30px>
-        <%= link_to channel.name, channel_path(channel) %>
-      </div>
-    </li>
-  <% end %>
-</ul>
-</div>
+
+<% if @user.subscriptions.empty? %>
+  <h4 id="subscription">You don't have any subscriptions yet.</h4>
+<% else %>
+  <%if @user.id == session[:user_id]%>
+  <h1>My Subscribed Streams</h1>
+  <%else%>
+  <h1>Their Subscribed Streams</h1>
+  <%end%>
+  <div class="container4">
+  <ul>
+    <% @user.channels.each do |channel| %>
+      <li>
+        <div class="bottom">
+          <a href=<%=channel_path(channel)%>>
+            <img class="channel-box-art" src="<%=channel.box_art%>" alt="Smiley face">
+          </a>
+          <img class="channel-logo" src="<%=channel.logo_url%>" alt="Smiley face" width=30px height=30px>
+          <%= link_to channel.name, channel_path(channel) %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  </div>
+<% end %>
+
+
 
 <br>
 <br>
