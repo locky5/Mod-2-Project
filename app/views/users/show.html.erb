@@ -3,7 +3,7 @@
 <%else%>
 <h1>Welcome to <%= @user.username %>'s Page!</h1>
 <%end%>
-<<<<<<< HEAD
+
 <div class="profile-img-container">
   <% if @user.avatar.attached?%>
     <img class = "profile" src="<%=(url_for(@user.avatar))%>" alt="avatar">
@@ -11,17 +11,7 @@
     <img class ="profile" src ="https://www.socialstrata.com/fileSendAction/fcType/0/fcOid/473907107221981281/filePointer/473907107221981293/fodoid/473907107221981288/imageType/LARGE/inlineImage/true/generic-avatar.png">
   <%end%>
 </div>
-=======
 
-<div class="profile-img-container">
- <% if @user.avatar.attached?%>
-   <img class = "profile" src="<%=(url_for(@user.avatar))%>" alt="avatar">
- <%else%>
-   <img class ="profile" src ="https://www.socialstrata.com/fileSendAction/fcType/0/fcOid/473907107221981281/filePointer/473907107221981293/fodoid/473907107221981288/imageType/LARGE/inlineImage/true/generic-avatar.png">
- <%end%>
-</div>
-
->>>>>>> Kevin
 <h2>Language:
 <% @languages.each do |language| %>
   <% if language.id == @user.language_id %>
@@ -129,7 +119,7 @@
   <% if !@user.friendships.empty? %>
     <ul class="center-list">
     <h4 class="center-list"><%@user.friendships.each do |friend|%>
-      <% if friend.avatar != nil %>
+      <% if friend.avatar.attached? %>
         <img id="friend-logo" src="<%=(url_for(friend.avatar))%>" alt="Smiley face" width=40px height=40px>
         <%=link_to friend.username, profile_path(friend)%>
       <% else %>
