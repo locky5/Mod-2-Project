@@ -24,6 +24,9 @@
 
 .jumbotron {
   margin-top: 25px;
+  width: 900px;
+  position: relative;
+  left: 130px;
 }
 
 .navbar-inverse .navbar-nav > li > a {
@@ -85,4 +88,5 @@ ul.nav.navbar-nav.navbar-right > li > a {
 div#myCarousel, .carousel-inner {
   width: 700px;
   margin: auto;
+  position: relative;
 }

@@ -11,7 +11,7 @@
 </div>
 
 
-
+<h2> Top Live Streams: </h2>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,7 +23,7 @@
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      
+
       <% @top_channels.each_with_index do |channel, index| %>
       <li data-target="#myCarousel" data-slide-to="<%= index %>" class="active"></li>
       <% end %>
@@ -42,9 +42,9 @@
       </iframe>
     </div>
   <% end %>
-  
+
     <!-- Wrapper for slides -->
-   
+
     </div>
 
     <!-- Left and right controls -->
@@ -58,3 +58,6 @@
     </a>
   </div>
 </div>
+
+<br>
+<br>
