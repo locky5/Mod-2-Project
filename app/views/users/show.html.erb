@@ -3,6 +3,11 @@
 <%else%>
 <h1>Welcome to <%= @user.username %>'s Page!</h1>
 <%end%>
+<% if @user.avatar.attached?%>
+  <div class = "photo"><img src="<%=(url_for(@user.avatar))%>" alt="avatar"></div>
+<%else%>
+  <img src ="https://media.wired.com/photos/592662d3f3e2356fd800911b/2:1/w_2500,c_limit/TwitterEgg_HP.jpg">
+  <%end%>
 <h2>Language:
 <% @languages.each do |language| %>
   <% if language.id == @user.language_id %>

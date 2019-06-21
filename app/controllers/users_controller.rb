@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    #@user.avatar.attach(io: File.open('app/assets/images/Parrot.jpeg'), filename: 'Parrot.jpeg', content_type: 'image/jpeg')
     @user.update(user_params)
 
     if @user.valid?
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
+    #@user.avatar.attach(io: File.open('app/assets/images/Parrot.jpeg'), filename: 'Parrot.jpeg', content_type: 'image/jpeg')
     if @user.valid?
       @user.save
       session[:user_id] = @user.id
@@ -78,7 +79,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :language_id)
+    params.require(:user).permit(:username, :password, :language_id, :avatar)
   end
 
 end
