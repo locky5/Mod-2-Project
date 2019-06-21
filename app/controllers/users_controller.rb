@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     if @user.id == session[:user_id]
       @languages = Language.all
     else
-      redirect_to profile_path(@user)
+      redirect_to '/not_found'
     end
   end
 
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
   def buddy
     @user = User.find(session[:user_id])
     @friend = User.find(params[:id])
-    
+
     if @user.friendships.include?(@friend)
       @user.remove_friend(@friend)
     else

@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   delete '/logout', to: "sessions#destroy"
 
   post '/profile/:id', to: "users#buddy"
+
+  get '/not_found', :to => "static_pages#not_found"
+
 end
