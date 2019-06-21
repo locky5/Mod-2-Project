@@ -1,13 +1,17 @@
 <%if @user.id == session[:user_id]%>
-<h1 >Hello, <span class="purple"><%= @user.username %>!</span>
+<h1 >Hello, <span class="purple"><%= @user.username %>!</span></h1>
 <%else%>
 <h1>Welcome to <%= @user.username %>'s Page!</h1>
 <%end%>
-<% if @user.avatar.attached?%>
-  <div class = "photo"><img src="<%=(url_for(@user.avatar))%>" alt="avatar"></div>
-<%else%>
-  <img src ="https://media.wired.com/photos/592662d3f3e2356fd800911b/2:1/w_2500,c_limit/TwitterEgg_HP.jpg">
-  <%end%>
+
+<div class="profile-img-container">
+ <% if @user.avatar.attached?%>
+   <img class = "profile" src="<%=(url_for(@user.avatar))%>" alt="avatar">
+ <%else%>
+   <img class ="profile" src ="https://www.socialstrata.com/fileSendAction/fcType/0/fcOid/473907107221981281/filePointer/473907107221981293/fodoid/473907107221981288/imageType/LARGE/inlineImage/true/generic-avatar.png">
+ <%end%>
+</div>
+
 <h2>Language:
 <% @languages.each do |language| %>
   <% if language.id == @user.language_id %>
@@ -115,10 +119,16 @@
   <% if !@user.friendships.empty? %>
     <ul class="center-list">
     <h4 class="center-list"><%@user.friendships.each do |friend|%>
-      <%=link_to friend.username, profile_path(friend)%></h4>
+      <% if friend.avatar != nil %>
+        <img id="friend-logo" src="<%=(url_for(friend.avatar))%>" alt="Smiley face" width=40px height=40px>
+        <%=link_to friend.username, profile_path(friend)%>
+      <% else %>
+        <img id="friend-logo" src="https://www.socialstrata.com/fileSendAction/fcType/0/fcOid/473907107221981281/filePointer/473907107221981293/fodoid/473907107221981288/imageType/LARGE/inlineImage/true/generic-avatar.png" alt="Smiley face" width=40px height=40px>
+        <%=link_to friend.username, profile_path(friend)%><h4>
+      <% end %>
     <%end%>
-  </ul>
-<% else %>
-  <h4 class="center-list">Start following <%=link_to "Users", '/users'%></h4>
-<% end %>
+    </ul>
+  <% else %>
+    <h4 class="center-list">Start following <%=link_to "Users", '/users'%></h4>
+  <% end %>
 <% end %>
