@@ -14,7 +14,6 @@
 <div class="form-divider">
   <%= f.label :password %>
   <%= f.password_field :password, class: 'text-input-box' %>
-<<<<<<< HEAD
 </div>
 <div class="form-divider">
   <%= f.label :language_id %>
@@ -25,15 +24,6 @@
   <%= f.file_field :avatar %>
 </div>
 <div class="form-divider center-btn">
-=======
-  <br>
-  <%= f.label :language_id %>
-  <%= f.collection_select(:language_id, @languages, :id, :name, prompt: true)%>
-  <br>
-  <%= f.label "Profile Photo" %>
-  <%= f.file_field :avatar, :class => 'upload-btn' %>
-  <br>
->>>>>>> Kevin
   <%= f.submit("Sign up", class: "btn btn-large btn-primary") %>
 </div>
 <% end %>
