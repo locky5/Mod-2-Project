@@ -12,7 +12,7 @@
   <%= form_for(@subscription) do |f| %>
   <%=f.hidden_field :user_id, :value => @user_id %>
   <%=f.hidden_field :channel_id, :value => @channel.id %>
-  <%=f.submit "Click here to subscribe!"%>
+  <%=f.submit "Click here to subscribe!", :class => 'subscribe'%>
 <% end %>
 <% end %>
 <% else %>
@@ -21,6 +21,8 @@ Please login to Subscribe!
 <br>
 <br>
 
+
+<b><h2 class = "title">Stream Title: <%= @channel.title %></h2></b>
 
 <div id="twitch-embed">
   <script src="https://embed.twitch.tv/embed/v1.js"></script>

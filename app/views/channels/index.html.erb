@@ -20,7 +20,6 @@
         </a>
         </div>
         <div id="channel-info">
-
         <img class="channel-logo" src="<%=channel.logo_url%>" alt="Smiley face" width=40px height=40px>
         <b><%=link_to channel.name, channel_path(channel)%></b>
         <b><p id="language">Language: <%= link_to @languages.find(channel.language_id).name, language_path(@languages.find(channel.language_id)) %></p></b>
