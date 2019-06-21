@@ -1,7 +1,7 @@
 <h1><%= @channel.name %>'s Live Stream</h1>
 
 <h2>Viewer Count: <%= @channel.view_count %></h2>
-
+<div class="center-sub">
 <% if @user_id %>
 
 
@@ -12,7 +12,7 @@
   <%= form_for(@subscription) do |f| %>
   <%=f.hidden_field :user_id, :value => @user_id %>
   <%=f.hidden_field :channel_id, :value => @channel.id %>
-  <%=f.submit "Click here to subscribe!", :class => 'subscribe'%>
+<%=f.submit "Click here to subscribe!"%>
 <% end %>
 <% end %>
 <% else %>
@@ -20,7 +20,7 @@ Please login to Subscribe!
 <% end %>
 <br>
 <br>
-
+</div>
 
 <b><h2 class = "title">Stream Title: <%= @channel.title %></h2></b>
 

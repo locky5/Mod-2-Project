@@ -83,10 +83,12 @@ div#twitch-embed {
   left: 100px;
 }
 
-.subscribe {
-  left: px;
-}
 
 h2.title {
     font-size: 30px;
+}
+
+.center-sub { 
+  justify-content: center;
+  display: flex;
 }
