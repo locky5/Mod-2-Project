@@ -1,13 +1,15 @@
 <%if @user.id == session[:user_id]%>
-<h1 >Hello, <span class="purple"><%= @user.username %>!</span>
+<h1 >Hello, <span class="purple"><%= @user.username %>!</span></h1>
 <%else%>
 <h1>Welcome to <%= @user.username %>'s Page!</h1>
 <%end%>
-<% if @user.avatar.attached?%>
-  <div class = "photo"><img src="<%=(url_for(@user.avatar))%>" alt="avatar"></div>
-<%else%>
-  <img src ="https://www.socialstrata.com/fileSendAction/fcType/0/fcOid/473907107221981281/filePointer/473907107221981293/fodoid/473907107221981288/imageType/LARGE/inlineImage/true/generic-avatar.png">
-<%end%>
+<div class="profile-img-container">
+  <% if @user.avatar.attached?%>
+    <img class = "profile" src="<%=(url_for(@user.avatar))%>" alt="avatar">
+  <%else%>
+    <img class ="profile" src ="https://www.socialstrata.com/fileSendAction/fcType/0/fcOid/473907107221981281/filePointer/473907107221981293/fodoid/473907107221981288/imageType/LARGE/inlineImage/true/generic-avatar.png">
+  <%end%>
+</div>
 <h2>Language:
 <% @languages.each do |language| %>
   <% if language.id == @user.language_id %>
