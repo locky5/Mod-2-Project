@@ -80,13 +80,15 @@ p#language {
 
 div#twitch-embed {
   position: relative;
-  left: 100px;
+  left: 140px;
 }
 
-.subscribe {
-  left: px;
-}
 
 h2.title {
-    font-size: 30px;
+  font-size: 30px;
+}
+
+.center-sub { 
+  justify-content: center;
+  display: flex;
 }
