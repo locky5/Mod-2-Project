@@ -45,10 +45,19 @@ def self.get_live_streams(api_args: "first=100")
         if !@user_data.empty?
           @found_user = @user_data.first
           @channel = Channel.new(twitch_user_login: @found_user["login"], twitch_user_id: twitch_channel["user_id"], name: twitch_channel["user_name"], title: twitch_channel["title"], language_id: @language.id, view_count: twitch_channel["viewer_count"], game_id: @game_id, status: twitch_channel["type"], box_art: @final_box_art, logo_url: @found_user["profile_image_url"])
+<<<<<<< HEAD
           if @channel.valid?
             @channel.save
             curr_live_channels << @channel
           end
+=======
+          byebug
+        end
+
+        if @channel.valid?
+          @channel.save
+          curr_live_channels << @channel
+>>>>>>> Kevin
         end
       else
         curr_live_channels << @channel
