@@ -85,11 +85,23 @@ h4#subscription {
 }
 
 .profile {
-    width:30%;
-    border-radius :35px;
+    width:10%;
+    border-radius: 100%;
 }
-
+.default-profile {
+    width: 10%;
+}
 .profile-img-container {
    width: 100%;
    text-align: center;
+}
+
+.form-divider {
+    margin: 10px;
+    text-align: left;
+}
+
+.center-btn {
+    margin-top: 20px;
+    text-align: center;
 }

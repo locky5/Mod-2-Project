@@ -4,19 +4,25 @@
 <%end%>
 
 <%= form_for @user do |f| %>
+<div class="form-divider">
   <%= f.label :username %>
   <%= f.text_field :username %>
-  <br>
+</div>
+  <div class="form-divider">
   <%= f.label :password %>
   <%= f.password_field :password %>
-  <br>
+</div>
+  <div class="form-divider">
   <%= f.label :language_id%>
   <%= f.collection_select(:language_id, @languages, :id, :name, prompt: true)%>
-  <br>
+</div>
+  <div class="form-divider">
   <%= f.label "Profile Photo" %>
   <%= f.file_field :avatar %>
-  <br>
+</div>
+  <div class="form-divider center-btn">
   <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+</div>
 <% end %>
 
 <br>

@@ -25,7 +25,11 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @languages = Language.all
+    if @user.id == session[:user_id]
+      @languages = Language.all
+    else
+      redirect_to profile_path(@user)
+    end
   end
 
   def update
