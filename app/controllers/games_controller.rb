@@ -3,7 +3,7 @@ require 'JSON'
 
 class GamesController < ApplicationController
   def index
-    @client_id = "ustnqopkuzuzccqb0e4q0svq1185rr"
+    @client_id = ENV["CLIENT_ID"]
     @dummy_data = RestClient.get "https://api.twitch.tv/kraken/games/top?limit=100",  { 'Client-ID': "#{@client_id}"}
     @data = JSON.parse(@dummy_data)
     @data["top"].each do |game|
