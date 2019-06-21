@@ -8,6 +8,8 @@ gem 'rest-client'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
+
+gem 'exception_handler', '~> 0.5.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
@@ -35,7 +37,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
-#  Use dotenv for git-ignoring and storing constants. 
+#  Use dotenv for git-ignoring and storing constants.
 gem 'dotenv-rails', groups: [:development, :test]
 
 # Use Capistrano for deployment
