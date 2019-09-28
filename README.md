@@ -1,24 +1,9 @@
-# README
+# OurTwitch
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application was built solely using Ruby on Rails. It's purpose is to use the existing Twitch.tv format and repurpose it into a social platform where users can share and show what streams they're watching.
 
-Things you may want to cover:
+Built using the Twitch API.
 
-* Ruby version
+Ruby Version: 2.6.2
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To run the app, begin by making sure you have the right Ruby version. If not, be sure to download the given version. Afterwards, begin by migrating and seeding the database. Afterwards, begin by using 'rails s'.
